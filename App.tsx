@@ -1,21 +1,8 @@
-
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import Login from "./scenes/Home/view";
+import Home from "./layout/main/main";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Login/>
-    </View>
-  );
+    return (
+        <Home/>
+    );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
