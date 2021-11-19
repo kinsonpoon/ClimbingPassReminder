@@ -32,7 +32,6 @@ export const Home = () => {
                 })}
             >
                 <Tab.Screen name="MyPass" component={MyPass} />
-                <Tab.Screen name="Friends" component={Friends} />
                 <Tab.Screen name="Profile" component={Profile} />
             </Tab.Navigator>
         </NavigationContainer>
