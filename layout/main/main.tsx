@@ -5,7 +5,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import Profile from "../../scenes/Profile/view";
 import {MyPass} from "../../scenes/MyPass/view";
-import {Friends} from "../../scenes/Friends/view";
 
 export const Home = () => {
     const Tab = createBottomTabNavigator();

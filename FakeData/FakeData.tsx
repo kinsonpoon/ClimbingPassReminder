@@ -1,3 +1,31 @@
+export const newEmptyGym = (name: string) => {
+    return({
+    name: name,
+    memberShip:{
+        startDate: '2020/01/01',
+        endDate: '2020/01/04',
+        freeGuest: 0
+    },
+    sharePass: [],
+    personalPass: []})
+}
+
+export const newEmptyPass = (startDate: string, endDate:string, count: number) =>{
+    return ({
+        startDate: startDate,
+        endDate: endDate,
+        count: count
+    })
+}
+
+export const newMemberShip = (startDate: string, endDate: string, freeGuest: number) =>{
+    return({
+        startDate: startDate,
+        endDate: endDate,
+        freeGuest: freeGuest
+    })
+}
+
 export const fakeData = [
     {
         name: 'Campus Climbing Gym',

@@ -1,12 +1,18 @@
-import React from "react";
-import {fakeData} from "../../../FakeData/FakeData";
+import React, {useState} from "react";
 import {GymAccordionItem} from "./GymAccordionItem";
+import {getAllPasses} from "../../../localStorage/passStorage";
 
-export const GymAccordionList = () =>{
+interface GymAccordionListProps{
+    gyms: MyGym[],
+    setLoading: (loading: boolean) => void
+}
+
+export const GymAccordionList = (props: GymAccordionListProps) =>{
     return (
         <>
-            {fakeData.map((gym: any, i) => (
-                <GymAccordionItem name={gym.name} memberShip={gym.memberShip} sharePass={gym.sharePass} personalPass={gym.personalPass}/>
+            {props.gyms?.length>=1 && props.gyms.map((gym: any, i) => (
+                <GymAccordionItem key={i} name={gym.name} memberShip={gym.memberShip} sharePass={gym.sharePass}
+                                  personalPass={gym.personalPass}/>
             ))
             }
         </>)

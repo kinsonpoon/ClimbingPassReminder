@@ -1,3 +1,8 @@
+type MyGym = {
+    gyms: GymType[]
+}
+
+
 type GymType = {
     name: string,
     memberShip: MemberShipType,
@@ -15,4 +20,9 @@ type SharePassType = {
     startDate: string,
     endDate: string,
     count: number
+}
+
+enum SharePassOptions {
+    Share,
+    Personal,
 }
