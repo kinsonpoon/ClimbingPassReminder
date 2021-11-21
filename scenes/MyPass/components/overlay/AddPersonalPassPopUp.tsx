@@ -7,7 +7,7 @@ import {styles} from "../../../../styles";
 import {addSharePass, extendMemberShip} from "../../../../localStorage/passStorage";
 
 
-interface AddSharePassPopUpProps {
+interface AddPersonalPassPopUpProps {
     setLoading: (loading: boolean) => void
     toggleOverlay: (visible: boolean) => void
     gymName: string
@@ -24,7 +24,7 @@ function getNewEndDate(startDate: Date, last: number) {
     return newStartDate.toLocaleDateString()
 }
 
-export const AddSharePassPopUp = (props: AddSharePassPopUpProps) => {
+export const AddPersonalPassPopUp = (props: AddPersonalPassPopUpProps) => {
     const [selectedValue, setSelectedValue] = useState('90')
     const [date, setDate] = useState(getNewStartDate());
     const [count, setCount] = useState('0');
@@ -43,7 +43,7 @@ export const AddSharePassPopUp = (props: AddSharePassPopUpProps) => {
     const submit = async () => {
         const startDate = date.toLocaleDateString()
         const endDate = getNewEndDate(date, parseInt(selectedValue))
-        addSharePass(props.gymName, 'sharePass',startDate, endDate, parseInt(count))
+        addSharePass(props.gymName, 'personalPass',startDate, endDate, parseInt(count))
         close()
         props.setLoading(true)
     };

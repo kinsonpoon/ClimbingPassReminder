@@ -18,8 +18,8 @@ export const MinusSharePassPopUp = (props: MinusSharePassPopUpProps) => {
     const [selectedValue, setSelectedValue] = useState('1');
     const submit = async () => {
         await minusSharePass(props.gymName, props.sharePassType, props.sharePassRef, parseInt(selectedValue))
-        props.setLoading(true)
         close()
+        props.setLoading(true)
     };
 
     const close = () => {

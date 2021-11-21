@@ -32,7 +32,6 @@ function getNewEndDate(startDate: Date, last: number){
 
 export const ExtendMemberShipPopUp = (props: ExtendMemberShipPopUpProps) => {
 
-    const [error, setError] = useState(false)
     const [selectedValue,setSelectedValue] = useState('30')
     const [date, setDate] = useState(getNewStartDate(props.lastEndDate));
     const [show, setShow] = useState(false);
@@ -98,14 +97,14 @@ export const ExtendMemberShipPopUp = (props: ExtendMemberShipPopUpProps) => {
                             onPress={() => {setShowInput(!showInput)}}/>
                     {showInput &&
                     <Input
-                        label='Name'
-                        placeholder='name...'
+                        label='Days that last'
+                        placeholder='days...'
                         keyboardType='numeric'
                         value={selectedValue}
                         onChangeText={onChangeCustomInput}
                     />
                     }
-                    <Text>New MemberShip ends at {getNewEndDate(date, parseInt(selectedValue))} days</Text>
+                    <Text>New MemberShip ends at {getNewEndDate(date, parseInt(selectedValue))}</Text>
                 </View>
                 <Button title="Submit"  onPress={submit}/>
             </Overlay>

@@ -3,6 +3,7 @@ import {Button, Icon, ListItem} from "react-native-elements";
 import {styles} from "../../../styles";
 import {View} from "react-native";
 import {MinusSharePassPopUp} from "./overlay/MinusSharePassPopUp";
+import {AddPersonalPassPopUp} from "./overlay/AddPersonalPassPopUp";
 
 interface personalPassAccordionProps {
     gymName: string,
@@ -14,6 +15,7 @@ interface personalPassAccordionProps {
 export const PersonalPassAccordion = (props: personalPassAccordionProps) => {
     const [expanded, setExpanded] = useState(true)
     const [isUseClicked, setIsUseClicked] =useState(false)
+    const [isAddPersonalPassClicked, setIsAddPersonalPassClicked] = useState(false)
     return (
         <ListItem.Accordion
             content={
@@ -21,7 +23,12 @@ export const PersonalPassAccordion = (props: personalPassAccordionProps) => {
                     <ListItem.Content>
                         <ListItem.Title>{props.name}
                             <Button title='ADD' buttonStyle={styles.addButton}
+                                    onPress={()=>{setIsAddPersonalPassClicked(true)}}
                             /></ListItem.Title>
+                        {isAddPersonalPassClicked && <AddPersonalPassPopUp
+                            setLoading={props.setLoading}
+                            toggleOverlay={setIsAddPersonalPassClicked}
+                            gymName={props.gymName}/>}
                     </ListItem.Content>
                 </View>
             }

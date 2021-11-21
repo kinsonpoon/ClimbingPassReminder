@@ -3,6 +3,7 @@ import {Button, Icon, ListItem} from "react-native-elements";
 import {styles} from "../../../styles";
 import {View} from "react-native";
 import {MinusSharePassPopUp} from "./overlay/MinusSharePassPopUp";
+import {AddSharePassPopUp} from "./overlay/AddSharePassPopUp";
 
 interface sharePassAccordionProps {
     gymName: string,
@@ -13,7 +14,8 @@ interface sharePassAccordionProps {
 
 export const SharePassAccordion = (props: sharePassAccordionProps) => {
     const [expanded, setExpanded] = useState(true)
-    const [isUseClicked, setIsUseClicked] =useState(false)
+    const [isUseClicked, setIsUseClicked] = useState(false)
+    const [isAddSharePassClicked, setIsAddSharePassClicked] = useState(false)
     return (
         <ListItem.Accordion
             content={
@@ -21,7 +23,14 @@ export const SharePassAccordion = (props: sharePassAccordionProps) => {
                     <ListItem.Content>
                         <ListItem.Title>{props.name}
                             <Button title='ADD' buttonStyle={styles.addButton}
+                                    onPress={() =>{setIsAddSharePassClicked(true)}}
                                 /></ListItem.Title>
+                        {isAddSharePassClicked &&
+                        <AddSharePassPopUp
+                            setLoading={props.setLoading}
+                            toggleOverlay={setIsAddSharePassClicked}
+                            gymName={props.gymName}
+                        />}
                     </ListItem.Content>
                 </View>
             }

@@ -17,6 +17,7 @@ export const AddGymPopUp =(props: AddGymPopUpProps) => {
         if(gymName!='') {
             await addNewGym(gymName)
             close()
+            props.setLoading(true)
         }
         else{
             setError(true)

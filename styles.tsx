@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     },
     overlay:{
         width: '80%',
-        height: '80%',
+        height: '90%',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
