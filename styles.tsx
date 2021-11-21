@@ -9,6 +9,15 @@ export const styles = StyleSheet.create({
     },
     extendButton:{
         marginLeft: 50,
+        backgroundColor: 'black'
+    },
+    addButton:{
+        marginLeft: 50,
+        backgroundColor: 'green'
+    },
+    useButton:{
+        backgroundColor: 'red',
+        marginLeft: 50,
     },
     passCountText:{
         alignSelf: "flex-end"

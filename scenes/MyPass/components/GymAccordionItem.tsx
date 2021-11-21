@@ -3,6 +3,7 @@ import {ListItem} from "react-native-elements";
 import {SharePassAccordion} from "./SharePassAccordion";
 import {MemberShipAccordion} from "./MemberShipAccordion";
 import {View} from "react-native";
+import {PersonalPassAccordion} from "./PersonalPassAccordion";
 
 interface GymAccordionItemProps extends GymType {
     setLoading: (loading: boolean) => void
@@ -33,11 +34,13 @@ export const GymAccordionItem = (props: GymAccordionItemProps) => {
                     passes={props.sharePass}
                     name='Share Pass'
                     setLoading={props.setLoading}
+                    gymName={props.name}
                 />
-                <SharePassAccordion
-                    passes={props.sharePass}
+                <PersonalPassAccordion
+                    passes={props.personalPass}
                     name='Personal Pass'
                     setLoading={props.setLoading}
+                    gymName={props.name}
                 />
             </View>
 

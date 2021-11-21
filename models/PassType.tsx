@@ -19,7 +19,13 @@ type MemberShipType = {
 type SharePassType = {
     startDate: string,
     endDate: string,
-    count: number
+    count: number,
+}
+
+type PersonalPassType = {
+    startDate: string,
+    endDate: string,
+    count: number,
 }
 
 enum SharePassOptions {

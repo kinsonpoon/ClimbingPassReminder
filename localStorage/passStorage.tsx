@@ -50,7 +50,7 @@ export const minusSharePass = async(gymName: string, targetPassOption: string, t
         if (jsonValue != null) {
             let gyms = JSON.parse(jsonValue)
             const gymIndex = gyms.findIndex((gym => gym.name == gymName));
-            const passIndex = gyms[gymIndex][targetPassOption].findIndex((passes => passes== targetPass));
+            const passIndex = gyms[gymIndex][targetPassOption].findIndex((passes => passes.startDate ==targetPass.startDate && passes.endDate ==targetPass.endDate && passes.count ==targetPass.count));
             gyms[gymIndex][targetPassOption][passIndex].count = gyms[gymIndex][targetPassOption][passIndex].count-count
             if(gyms[gymIndex][targetPassOption][passIndex].count<=0){
                 gyms[gymIndex][targetPassOption].splice(passIndex,1)

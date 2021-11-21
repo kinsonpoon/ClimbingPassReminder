@@ -4,14 +4,14 @@ import {styles} from "../../../styles";
 import {View} from "react-native";
 import {MinusSharePassPopUp} from "./overlay/MinusSharePassPopUp";
 
-interface sharePassAccordionProps {
+interface personalPassAccordionProps {
     gymName: string,
     passes: SharePassType[],
     name: string,
     setLoading: (loading: boolean) => void
 }
 
-export const SharePassAccordion = (props: sharePassAccordionProps) => {
+export const PersonalPassAccordion = (props: personalPassAccordionProps) => {
     const [expanded, setExpanded] = useState(true)
     const [isUseClicked, setIsUseClicked] =useState(false)
     return (
@@ -21,7 +21,7 @@ export const SharePassAccordion = (props: sharePassAccordionProps) => {
                     <ListItem.Content>
                         <ListItem.Title>{props.name}
                             <Button title='ADD' buttonStyle={styles.addButton}
-                                /></ListItem.Title>
+                            /></ListItem.Title>
                     </ListItem.Content>
                 </View>
             }
@@ -37,7 +37,7 @@ export const SharePassAccordion = (props: sharePassAccordionProps) => {
                         <ListItem.Title>Ends: {sharePass.endDate}</ListItem.Title>
                         <ListItem.Subtitle style={styles.passCountText}>Count: {sharePass.count}
                             <Button title='USE' buttonStyle={styles.useButton} onPress={()=>{setIsUseClicked(true)}}/></ListItem.Subtitle>
-                        {isUseClicked && <MinusSharePassPopUp gymName={props.gymName} sharePassType={'sharePass'} sharePassRef={sharePass} count={sharePass.count} setLoading={props.setLoading} toggleOverlay={setIsUseClicked}/>}
+                        {isUseClicked && <MinusSharePassPopUp gymName={props.gymName} sharePassType={'personalPass'} sharePassRef={sharePass} count={sharePass.count} setLoading={props.setLoading} toggleOverlay={setIsUseClicked}/>}
                     </ListItem.Content>
                 </ListItem>
 

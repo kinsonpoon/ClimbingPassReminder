@@ -1,17 +1,23 @@
 import React from 'react'
-import {View, Picker} from "react-native";
+import {View, Picker, Text} from "react-native";
 import {Button, Overlay} from "react-native-elements";
 import {useState} from "react";
+import {minusSharePass} from "../../../../localStorage/passStorage";
 
 interface MinusSharePassPopUpProps{
     count: number
     setLoading: (loading: boolean) => void
     toggleOverlay: (visible: boolean) => void
+    gymName: string
+    sharePassType: string
+    sharePassRef: any
 }
 
 export const MinusSharePassPopUp = (props: MinusSharePassPopUpProps) =>{
     const [selectedValue, setSelectedValue] = useState('1');
-    const submit = () => {
+    const submit = async() => {
+        await minusSharePass(props.gymName, props.sharePassType, props.sharePassRef, parseInt(selectedValue))
+        props.setLoading(true)
         close()
     };
 
@@ -22,12 +28,15 @@ export const MinusSharePassPopUp = (props: MinusSharePassPopUpProps) =>{
     return (
         <View>
             <Overlay isVisible={true} onBackdropPress={close}>
+                <Text>You have {props.count} {props.sharePassType} for now in {props.gymName}</Text>
                 <Picker
                 selectedValue={selectedValue}
                 onValueChange={setSelectedValue}>
                     {[...Array(props.count)].map((e, i) => {
-                    return <Picker.Item label={i.toString()} value={i.toString()} />})}
+                        const number = i+1
+                    return <Picker.Item key={i} label={number.toString()} value={number.toString()} />})}
                 </Picker>
+                <Text>You will use {selectedValue} pass</Text>
                 <Button title="Confirm" onPress={submit} />
             </Overlay>
         </View>
