@@ -6,8 +6,7 @@ export const storeAllPasses = async (value: any) => {
         const jsonValue = JSON.stringify(value)
         await AsyncStorage.setItem('@allPasses', jsonValue)
     } catch (e) {
-        console.log(e)
-        // saving error
+        alert(e)
     }
 }
 
@@ -15,13 +14,12 @@ export const getAllPasses = async () => {
     try {
         let jsonValue = await AsyncStorage.getItem('@allPasses')
         if (jsonValue == null) {
-            await storeAllPasses([])
+            await storeAllPasses(fakeData)
             jsonValue = await AsyncStorage.getItem('@allPasses')
             return JSON.parse(jsonValue!)
         }
         return JSON.parse(jsonValue)
     } catch (e) {
-        // error reading value
     }
 }
 
@@ -42,27 +40,25 @@ export const addNewGym = async (name: string) => {
             }
         }
     } catch (e) {
-        console.log(e)
-        // error reading value
+        alert(e)
     }
 }
 
-export const minusSharePass = async(gymName: string, targetPassOption: string, targetPass: SharePassType) =>{
+export const minusSharePass = async(gymName: string, targetPassOption: string, targetPass: SharePassType, count: number) =>{
     try {
         let jsonValue = await AsyncStorage.getItem('@allPasses')
         if (jsonValue != null) {
             let gyms = JSON.parse(jsonValue)
             const gymIndex = gyms.findIndex((gym => gym.name == gymName));
             const passIndex = gyms[gymIndex][targetPassOption].findIndex((passes => passes== targetPass));
-            gyms[gymIndex][targetPassOption][passIndex].count--
+            gyms[gymIndex][targetPassOption][passIndex].count = gyms[gymIndex][targetPassOption][passIndex].count-count
             if(gyms[gymIndex][targetPassOption][passIndex].count<=0){
                 gyms[gymIndex][targetPassOption].splice(passIndex,1)
             }
             await storeAllPasses(gyms)
         }
     } catch (e) {
-        console.log(e)
-        // error reading value
+        alert(e)
     }
 }
 
@@ -76,8 +72,7 @@ export const addSharePass = async(gymName:string, targetPassOption: string, star
             await storeAllPasses(gyms)
         }
     } catch (e) {
-        console.log(e)
-        // error reading value
+        alert(e)
     }
 }
 
@@ -91,7 +86,6 @@ export const extendMemberShip = async(gymName:string, startDate: string, endDate
             await storeAllPasses(gyms)
         }
     } catch (e) {
-        console.log(e)
-        // error reading value
+        alert(e)
     }
 }

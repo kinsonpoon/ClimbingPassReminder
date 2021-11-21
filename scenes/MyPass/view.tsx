@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, SafeAreaView, StatusBar, ScrollView} from "react-native";
+import {StyleSheet, SafeAreaView, StatusBar, ScrollView, View} from "react-native";
 import {Button} from 'react-native-elements'
 import {Icon} from 'react-native-elements';
 import {GymAccordionList} from "./components/GymAccordionList";
@@ -10,20 +10,20 @@ export const MyPass = () => {
     const [loading, setLoading] = useState(true)
     const [getData, setGetData] = useState([])
     const [isAddGymPopUp, setIsAddGymPopUp] = useState(false)
-    if(loading){
-        getAllPasses().then( res =>{
+    if (loading) {
+        getAllPasses().then(res => {
             setGetData(res)
             setLoading(false)
         })
-        return(
-            <>Loading</>
-        )
     }
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView>
-                <GymAccordionList gyms={getData} setLoading={setLoading}/>
-                <Button title='New Gym' icon={<Icon name='add' size={20} color='white'/>} onPress={() =>setIsAddGymPopUp(true)}/>
+                {!loading &&
+                    <GymAccordionList gyms={getData} setLoading={setLoading}/>
+                }
+                <Button title='New Gym' icon={<Icon name='add' size={20} color='white'/>}
+                        onPress={() => setIsAddGymPopUp(true)}/>
                 {isAddGymPopUp && <AddGymPopUp setLoading={setLoading} toggleOverlay={setIsAddGymPopUp}/>}
             </ScrollView>
         </SafeAreaView>

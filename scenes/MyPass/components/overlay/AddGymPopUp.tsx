@@ -12,9 +12,9 @@ interface AddGymPopUpProps{
 export const AddGymPopUp =(props: AddGymPopUpProps) => {
     const [gymName, setGymName] = useState('')
     const [error, setError] = useState(false)
-    const submit = () => {
+    const submit = async() => {
         if(gymName!='') {
-            addNewGym(gymName)
+            await addNewGym(gymName)
             close()
         }
         else{
@@ -34,10 +34,9 @@ export const AddGymPopUp =(props: AddGymPopUpProps) => {
                     placeholder='name...'
                     value={gymName}
                     onChangeText={setGymName}
-                    errorMessage={error?'Input cannot be empty':''}
+                    errorMessage={'Input cannot be empty'}
                     renderErrorMessage={error}
                 />
-
                 <Button title="Submit" onPress={submit} />
             </Overlay>
         </View>

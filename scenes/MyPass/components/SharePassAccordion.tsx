@@ -1,10 +1,12 @@
 import React, {useState} from "react";
 import {Button, Icon, ListItem} from "react-native-elements";
 import {styles} from "../../../styles";
+import {View} from "react-native";
 
 interface sharePassAccordionProps {
     passes: SharePassType[],
     name: string,
+    setLoading: (loading: boolean) => void
 }
 
 export const SharePassAccordion = (props: sharePassAccordionProps) => {
@@ -12,13 +14,13 @@ export const SharePassAccordion = (props: sharePassAccordionProps) => {
     return (
         <ListItem.Accordion
             content={
-                <>
+                <View>
                     <ListItem.Content>
                         <ListItem.Title>{props.name}
                             <Button title='ADD' buttonStyle={styles.extendButton}
                                 /></ListItem.Title>
                     </ListItem.Content>
-                </>
+                </View>
             }
             isExpanded={expanded}
             onPress={() => {
@@ -37,7 +39,6 @@ export const SharePassAccordion = (props: sharePassAccordionProps) => {
                     </ListItem.Content>
                 </ListItem>
             ))
-
             }
         </ListItem.Accordion>
     )

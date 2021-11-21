@@ -24,5 +24,5 @@ type SharePassType = {
 
 enum SharePassOptions {
     Share,
-    Personal,
+    Personal
 }

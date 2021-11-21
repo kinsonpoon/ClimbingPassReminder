@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import { StyleSheet } from 'react-native';
-import {ListItem, Avatar, Icon} from 'react-native-elements';
+import {StyleSheet, View} from 'react-native';
+import {ListItem, Avatar} from 'react-native-elements';
 
 
 const list = [
@@ -15,32 +15,31 @@ const list = [
     }]
 
 export const Profile = () => {
-    const [expanded, setExpanded]= useState(false)
+    const [expanded, setExpanded] = useState(false)
     return (
         <ListItem.Accordion
-    content={
-    <>
-        <ListItem.Content>
-            <ListItem.Title>Gym1</ListItem.Title>
-        </ListItem.Content>
-    </>
-}
-    isExpanded={expanded}
-    onPress={() => {
-        setExpanded(!expanded);
-    }}
->
-    {list.map((l, i) => (
-        <ListItem key={i} bottomDivider>
-            <Avatar title={l.name[0]} source={{ uri: l.avatar_url }} />
-            <ListItem.Content>
-                <ListItem.Title>{l.name}</ListItem.Title>
-                <ListItem.Subtitle>{l.subtitle}</ListItem.Subtitle>
-            </ListItem.Content>
-            <ListItem.Chevron />
-        </ListItem>
-    ))}
-</ListItem.Accordion>
+            content={
+                    <ListItem.Content>
+                        <ListItem.Title>Gym1</ListItem.Title>
+                    </ListItem.Content>
+            }
+            isExpanded={expanded}
+            onPress={() => {
+                setExpanded(!expanded);
+            }}
+        ><View>
+            {list.map((l, i) => (
+                <ListItem key={i} bottomDivider>
+                    <Avatar title={l.name[0]} source={{uri: l.avatar_url}}/>
+                    <ListItem.Content>
+                        <ListItem.Title>{l.name}</ListItem.Title>
+                        <ListItem.Subtitle>{l.subtitle}</ListItem.Subtitle>
+                    </ListItem.Content>
+                    <ListItem.Chevron/>
+                </ListItem>
+            ))}
+        </View>
+        </ListItem.Accordion>
     );
 };
 

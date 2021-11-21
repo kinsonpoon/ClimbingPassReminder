@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {GymAccordionItem} from "./GymAccordionItem";
-import {getAllPasses} from "../../../localStorage/passStorage";
+import {View} from "react-native";
 
 interface GymAccordionListProps{
     gyms: MyGym[],
@@ -9,11 +9,11 @@ interface GymAccordionListProps{
 
 export const GymAccordionList = (props: GymAccordionListProps) =>{
     return (
-        <>
-            {props.gyms?.length>=1 && props.gyms.map((gym: any, i) => (
+        <View>
+            {(props.gyms.length>0)? props.gyms.map((gym: any, i) => (
                 <GymAccordionItem key={i} name={gym.name} memberShip={gym.memberShip} sharePass={gym.sharePass}
-                                  personalPass={gym.personalPass}/>
-            ))
+                                  personalPass={gym.personalPass} setLoading={props.setLoading}/>
+            )):<View>Add new Pass</View>
             }
-        </>)
+        </View>)
 }

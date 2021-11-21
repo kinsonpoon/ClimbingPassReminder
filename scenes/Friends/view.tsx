@@ -1,9 +1,8 @@
 import React from 'react';
+import {View} from "react-native";
 
 export const Friends = () => {
     return(
-        <div>
-            friends
-        </div>
+        <View>friends</View>
     )
 }
