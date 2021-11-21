@@ -3,6 +3,7 @@ import {View} from "react-native";
 import {Button, Input, Overlay} from "react-native-elements";
 import {useState} from "react";
 import {addNewGym} from "../../../../localStorage/passStorage";
+import {styles} from "../../../../styles";
 
 interface AddGymPopUpProps{
     setLoading: (loading: boolean) => void
@@ -28,7 +29,7 @@ export const AddGymPopUp =(props: AddGymPopUpProps) => {
 
     return (
         <View>
-            <Overlay isVisible={true} onBackdropPress={close}>
+            <Overlay overlayStyle={styles.overlay} isVisible={true} onBackdropPress={close}>
                 <Input
                     label='Name'
                     placeholder='name...'

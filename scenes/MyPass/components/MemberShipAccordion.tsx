@@ -5,6 +5,7 @@ import {ExtendMemberShipPopUp} from "./overlay/ExtendMembershipPopUp";
 
 interface MemberShipAccordionProps extends MemberShipType {
     setLoading: (loading: boolean) => void
+    gymName: string
 }
 
 export const MemberShipAccordion = (props: MemberShipAccordionProps) => {
@@ -13,9 +14,9 @@ export const MemberShipAccordion = (props: MemberShipAccordionProps) => {
     return (
         <ListItem.Accordion
             content={
-                    <ListItem.Content>
-                        <ListItem.Title>MemberShip</ListItem.Title>
-                    </ListItem.Content>
+                <ListItem.Content>
+                    <ListItem.Title>MemberShip</ListItem.Title>
+                </ListItem.Content>
             }
             isExpanded={expanded}
             onPress={() => {
@@ -34,7 +35,9 @@ export const MemberShipAccordion = (props: MemberShipAccordionProps) => {
                     <ListItem.Subtitle>Free Guest: {props.freeGuest}</ListItem.Subtitle>
                     {isExtendClicked &&
                     <ExtendMemberShipPopUp setLoading={props.setLoading}
-                                           toggleOverlay={setIsExtendClicked}/>}
+                                           toggleOverlay={setIsExtendClicked}
+                                           lastEndDate={props.endDate}
+                                           gymName={props.gymName}/>}
                 </ListItem.Content>
             </ListItem>
 

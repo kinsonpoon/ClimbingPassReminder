@@ -7,6 +7,22 @@ export const styles = StyleSheet.create({
     subSubAccordion:{
         marginLeft: 20
     },
+    overlay:{
+        width: '80%',
+        height: '80%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+    },
+    halfButton:{
+      width: '50%',
+        left: '25%',
+        right: '25%',
+        marginVertical:5
+    },
+    marginVer:{
+        marginVertical: 5
+    },
     extendButton:{
         marginLeft: 50,
         backgroundColor: 'black'
@@ -28,5 +44,5 @@ export const styles = StyleSheet.create({
     },
     minusButtonTitle: {
         color: 'black'
-    }
+    },
 })

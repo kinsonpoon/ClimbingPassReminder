@@ -29,6 +29,7 @@ export const GymAccordionItem = (props: GymAccordionItemProps) => {
                     endDate={props.memberShip.endDate}
                     freeGuest={props.memberShip.freeGuest}
                     setLoading={props.setLoading}
+                    gymName={props.name}
                 />
                 <SharePassAccordion
                     passes={props.sharePass}
