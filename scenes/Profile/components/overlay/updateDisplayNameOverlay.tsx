@@ -51,7 +51,7 @@ export const UpdateDisplayNameOverlay = (props: UpdateDisplayNameOverlayProps) =
                     onChangeText={checkDisplayName}
                 />
                 <Text>{errMessage}</Text>
-                <Text>Request {fireBaseRes}</Text>
+                <Text>{fireBaseRes}</Text>
             </View>
             <Button title="Confirm" disabled={error} onPress={() => submitUpdateDisplayNAme()}/>
         </Overlay>

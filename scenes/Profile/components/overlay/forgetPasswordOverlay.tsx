@@ -21,8 +21,7 @@ export const ForgetPasswordOverlay = (props: ForgetPasswordOverlayProps) => {
         const response = await forgetPassword(email)
         if (response !== 'success') {
             setFireBaseRes(response)
-        }
-        else{
+        } else {
             setFireBaseRes('Please check ur email')
         }
     }
@@ -55,7 +54,9 @@ export const ForgetPasswordOverlay = (props: ForgetPasswordOverlayProps) => {
                     onChangeText={checkEmail}
                 />
                 <Text>{errMessage}</Text>
+                {fireBaseRes &&
                 <Text>Request {fireBaseRes}, please check ur email</Text>
+                }
             </View>
             <Button title="Confirm" disabled={error} onPress={() => submitForgetPW()}/>
         </Overlay>
