@@ -22,7 +22,7 @@ export const LoginOverlay = (props: loginOverlayProps) => {
 
     const submitLogin = async () => {
         const response = await login(email, password)
-        if (response !== 'success') {
+        if (response !== 'Success') {
             setFireBaseRes(response)
         }
         else{

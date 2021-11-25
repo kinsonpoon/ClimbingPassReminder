@@ -4,7 +4,8 @@ import {ListItem, Avatar, Button} from 'react-native-elements';
 import {logOut} from "../../../firebase/firebaseUserFunction";
 import {UpdateDisplayNameOverlay} from "../components/overlay/updateDisplayNameOverlay";
 import {styles} from "../../../styles";
-import {writeUploadPasses} from "../../../firebase/database";
+import {writeUploadPasses} from "../../../firebase/user_database";
+import {SearchUserOverlay} from "../components/overlay/searchUserOverlay";
 
 interface profileProps {
     user: any
@@ -13,6 +14,8 @@ interface profileProps {
 export const Profile = (props: profileProps) => {
     const [expanded, setExpanded] = useState(false)
     const [isClickedUpdateDisplayName, setIsClickedUpdateDisplayName] = useState(false)
+    const [isClickSearch, setIsClickSearch] = useState(false)
+
 
     const uploadPassToCloud = async() =>{
         const result = await writeUploadPasses(props.user.uid)
@@ -55,13 +58,16 @@ export const Profile = (props: profileProps) => {
                         </View>
                     </ListItem.Content>
                 </ListItem>
-                <ListItem bottomDivider>
+                <ListItem bottomDivider onPress={()=>{setIsClickSearch(!isClickSearch)}}>
                     <Avatar icon={{name: 'search', type: 'font-awesome'}} containerStyle={{backgroundColor: 'black'}}/>
                     <ListItem.Content>
                         <ListItem.Title>Find my Friends</ListItem.Title>
                     </ListItem.Content>
                     <ListItem.Chevron/>
                 </ListItem>
+                {isClickSearch &&
+                <SearchUserOverlay toggleOverlay={setIsClickSearch}/>
+                }
                 <ListItem bottomDivider>
                     <Avatar icon={{name: 'users', type: 'font-awesome'}} containerStyle={{backgroundColor: 'black'}}/>
                     <ListItem.Content>

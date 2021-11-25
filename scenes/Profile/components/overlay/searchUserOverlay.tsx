@@ -3,14 +3,13 @@ import {styles} from "../../../../styles";
 import {Button, Input, Overlay, Text} from "react-native-elements";
 import {forgetPassword, updateDisplayName} from "../../../../firebase/firebaseUserFunction";
 import {View} from "react-native";
-import {updateUserName} from "../../../../firebase/user_database";
+import {searchUsers} from "../../../../firebase/user_database";
 
-interface UpdateDisplayNameOverlayProps {
-    user: any
+interface SearchUserOverlayProps {
     toggleOverlay: (visible: boolean) => void
 }
 
-export const UpdateDisplayNameOverlay = (props: UpdateDisplayNameOverlayProps) => {
+export const SearchUserOverlay = (props: SearchUserOverlayProps) => {
     const [displayName, setDisplayName] = useState('')
     const [error, setError] = useState(true)
     const [errMessage, setErrMessage] = useState('')
@@ -20,19 +19,7 @@ export const UpdateDisplayNameOverlay = (props: UpdateDisplayNameOverlayProps) =
     }
 
     const submitUpdateDisplayName = async () => {
-        await updateUserName(props.user.uid, displayName).then( res =>{
-            console.log(res)
-            if( res!== 'Success'){
-                console.log(res)
-                setFireBaseRes(res)
-            }
-            else{
-                setFireBaseRes('Updated')
-            }
-        })
-            .catch(err =>{
-                setFireBaseRes(err)
-            })
+        const response = await searchUsers(displayName, 'username')
     }
 
     function checkDisplayName(input) {
@@ -50,7 +37,7 @@ export const UpdateDisplayNameOverlay = (props: UpdateDisplayNameOverlayProps) =
     return (
         <Overlay overlayStyle={styles.overlay} isVisible={true} onBackdropPress={close}>
             <View>
-                <Text style={styles.overlayTitle}>Update Display Name</Text>
+                <Text style={styles.overlayTitle}>Search</Text>
                 <Input
                     label='Display Name'
                     placeholder='name...'
