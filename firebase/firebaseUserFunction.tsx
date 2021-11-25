@@ -1,10 +1,12 @@
 import React from "react";
 import firebase from "firebase/compat";
+import {writeUserData} from "./database";
 
 export const signUp = async (email: string, password: string) =>{
     return firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
         const user = userCredential.user
         user?.sendEmailVerification()
+        writeUserData(user?.uid, user?.displayName, user?.email)
         return 'Success'
     })
         .catch((error) => {
@@ -41,6 +43,7 @@ export const logOut = async() =>{
 
 export const updateDisplayName = async (user, displayName: string) =>{
     return user.updateProfile({displayName: displayName}).then((res) =>{
+        updateDisplayName(user?.uid, displayName)
         return 'Success'
     }).catch((error)=>{
         return error

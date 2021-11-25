@@ -1,20 +1,10 @@
 import React, {useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 import {ListItem, Avatar, Button} from 'react-native-elements';
 import {logOut} from "../../../firebase/firebaseUserFunction";
 import {UpdateDisplayNameOverlay} from "../components/overlay/updateDisplayNameOverlay";
 import {styles} from "../../../styles";
-
-const list = [
-    {
-        name: 'UpdateDisplayName',
-        subtitle: 'Vice President'
-    },
-    {
-        name: 'Chris Jackson',
-        avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-        subtitle: 'Vice Chairman'
-    }]
+import {writeUploadPasses} from "../../../firebase/database";
 
 interface profileProps {
     user: any
@@ -23,11 +13,23 @@ interface profileProps {
 export const Profile = (props: profileProps) => {
     const [expanded, setExpanded] = useState(false)
     const [isClickedUpdateDisplayName, setIsClickedUpdateDisplayName] = useState(false)
+
+    const uploadPassToCloud = async() =>{
+        const result = await writeUploadPasses(props.user.uid)
+        if(result=='Success'){
+            alert('Upload success')
+        }
+        else{
+            alert(result)
+        }
+    }
+
     return (
         <View>
             <View style={{backgroundColor: 'white'}}>
                 <Button titleStyle={{color: 'black'}} buttonStyle={styles.uploadButton} title={'Upload to cloud'}
                         onPress={() => {
+                            uploadPassToCloud()
                         }}/>
             </View>
             <ListItem.Accordion
