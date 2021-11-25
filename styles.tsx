@@ -28,6 +28,11 @@ export const styles = StyleSheet.create({
       textAlign: "center",
       marginBottom: 10
     },
+    uploadButton: {
+        width: '60%',
+        marginLeft: '20%',
+        backgroundColor: 'orange'
+    },
     signUpButton: {},
     loginButton:{},
     forgetPasswordButton:{},
