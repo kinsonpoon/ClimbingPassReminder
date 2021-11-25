@@ -3,8 +3,8 @@ import {StyleSheet} from 'react-native';
 import {NavigationContainer} from "@react-navigation/native";
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Ionicons} from '@expo/vector-icons';
-import Profile from "../../scenes/Profile/view";
 import {MyPass} from "../../scenes/MyPass/view";
+import {ProfileScreen} from "../../scenes/Profile/view";
 
 export const Home = () => {
     const Tab = createBottomTabNavigator();
@@ -14,26 +14,25 @@ export const Home = () => {
                 screenOptions={({route}) => ({
                     tabBarIcon: ({focused, color, size}) => {
                         let iconName
-
-                        if (route.name === 'Home') {
-                            iconName = focused
-                                ? 'ios-information-circle'
-                                : 'ios-information-circle-outline'
-                        } else if (route.name === 'Settings') {
-                            iconName = focused ? 'ios-list-box' : 'ios-list'
+                        console.log(route)
+                        if (route.name === 'MyPass') {
+                            iconName = 'compass-outline'
+                        } else if (route.name === 'Profile') {
+                            iconName = 'person-circle-outline'
                         }
 
                         // You can return any component that you like here!
-                        return <Ionicons names={iconName} size={size} color={color}/>
+                        return <Ionicons name={iconName} size={size} color={color}/>
                     },
                     tabBarActiveTintColor: 'tomato',
                     tabBarInactiveTintColor: 'gray'
                 })}
             >
                 <Tab.Screen name="MyPass" component={MyPass}/>
-                <Tab.Screen name="Profile" component={Profile}/>
+                <Tab.Screen name="Profile" component={ProfileScreen}/>
             </Tab.Navigator>
         </NavigationContainer>
+
     )
 };
 

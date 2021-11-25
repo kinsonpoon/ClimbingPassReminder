@@ -23,6 +23,14 @@ export const styles = StyleSheet.create({
     marginVer:{
         marginVertical: 5
     },
+    overlayTitle:{
+      fontSize: 25,
+      textAlign: "center",
+      marginBottom: 10
+    },
+    signUpButton: {},
+    loginButton:{},
+    forgetPasswordButton:{},
     extendButton:{
         marginLeft: 50,
         backgroundColor: 'black'
