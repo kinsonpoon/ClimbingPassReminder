@@ -15,10 +15,17 @@ interface ExtendMemberShipPopUpProps {
 }
 
 function getNewStartDate(lastEndDate: string) {
-    let newStartDate = new Date(lastEndDate)
+    const dateArray = lastEndDate.split('/')
+    const year = parseInt(dateArray[2])
+    const month = parseInt(dateArray[0])
+    const days = parseInt(dateArray[1])
+    let newStartDate = new Date()
+    newStartDate.setFullYear(year,month,days)
+    console.log(newStartDate)
     if (newStartDate.getTime() < (new Date()).getTime()) {
         newStartDate = new Date()
     }
+    console.log(newStartDate)
     return (
         newStartDate
     )
