@@ -6,24 +6,35 @@ import {UpdateDisplayNameOverlay} from "../components/overlay/updateDisplayNameO
 import {styles} from "../../../styles";
 import {writeUploadPasses} from "../../../firebase/user_database";
 import {SearchUserOverlay} from "../components/overlay/searchUserOverlay";
+import {findAllMyFd, findAllMyRequest} from "../../../firebase/friend_request_database";
+import {getAllFriendRequest} from "../../../localStorage/friendStorage";
+import {FriendRequestOverlay} from "../components/overlay/friendRequestOverlay";
 
 interface profileProps {
     user: any
+    reloadStorage: () => void
+    fds: any
+    fdRequest: any
 }
 
 export const Profile = (props: profileProps) => {
     const [expanded, setExpanded] = useState(false)
     const [isClickedUpdateDisplayName, setIsClickedUpdateDisplayName] = useState(false)
     const [isClickSearch, setIsClickSearch] = useState(false)
+    const [isClickedFriend, setIsClickedFriend] = useState(false)
+    const [isClickedRequest, setIsClickedRequest] = useState(false)
 
 
     const uploadPassToCloud = async() =>{
-        const result = await writeUploadPasses(props.user.uid)
+        const [result,result2,result3] = await Promise.all([writeUploadPasses(props.user.uid),findAllMyRequest(props.user),findAllMyFd(props.user)])
+
         if(result=='Success'){
             alert('Upload success')
+            props.reloadStorage()
         }
         else{
             alert(result)
+            props.reloadStorage()
         }
     }
 
@@ -66,25 +77,26 @@ export const Profile = (props: profileProps) => {
                     <ListItem.Chevron/>
                 </ListItem>
                 {isClickSearch &&
-                <SearchUserOverlay toggleOverlay={setIsClickSearch}/>
+                <SearchUserOverlay user={props.user} toggleOverlay={setIsClickSearch}/>
                 }
                 <ListItem bottomDivider>
                     <Avatar icon={{name: 'users', type: 'font-awesome'}} containerStyle={{backgroundColor: 'black'}}/>
                     <ListItem.Content>
                         <ListItem.Title>Your Friends</ListItem.Title>
-                        <ListItem.Subtitle>10</ListItem.Subtitle>
+                        <ListItem.Subtitle>{props.fds.length}</ListItem.Subtitle>
                     </ListItem.Content>
                     <ListItem.Chevron/>
                 </ListItem>
-                <ListItem bottomDivider>
+                <ListItem bottomDivider onPress={()=>{setIsClickedRequest(true)}}>
                     <Avatar icon={{name: 'envelope', type: 'font-awesome'}}
                             containerStyle={{backgroundColor: 'black'}}/>
                     <ListItem.Content>
                         <ListItem.Title>New Friends Request</ListItem.Title>
-                        <ListItem.Subtitle>10</ListItem.Subtitle>
+                        <ListItem.Subtitle>{props.fdRequest.length}</ListItem.Subtitle>
                     </ListItem.Content>
                     <ListItem.Chevron/>
                 </ListItem>
+                {isClickedRequest && props.fdRequest.length>0 && <FriendRequestOverlay reloadParent={props.reloadStorage} toggleOverlay={setIsClickedRequest} data={props.fdRequest}/>}
             </View>
             </ListItem.Accordion>
             <Button title={'Log Out'} onPress={() => {

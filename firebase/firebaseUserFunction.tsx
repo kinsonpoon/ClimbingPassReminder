@@ -16,8 +16,8 @@ export const signUp = async (email: string, password: string) =>{
 
 export const login = async (email: string, password: string) =>{
     return firebase.auth().signInWithEmailAndPassword(email,password).then((userCredential) => {
-        const user = userCredential.user
-        writeUserData(user?.uid, user?.displayName, user?.email)
+        // const user = userCredential.user
+        // writeUserData(user?.uid, user?.displayName, user?.email)
         return 'Success'
     })
         .catch((error) => {

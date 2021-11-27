@@ -43,7 +43,7 @@ export const AddSharePassPopUp = (props: AddSharePassPopUpProps) => {
     const submit = async () => {
         const startDate = date.toLocaleDateString()
         const endDate = getNewEndDate(date, parseInt(selectedValue))
-        addSharePass(props.gymName, 'sharePass',startDate, endDate, parseInt(count))
+        await addSharePass(props.gymName, 'sharePass',startDate, endDate, parseInt(count))
         close()
         props.setLoading(true)
     };

@@ -14,7 +14,6 @@ export const Home = () => {
                 screenOptions={({route}) => ({
                     tabBarIcon: ({focused, color, size}) => {
                         let iconName
-                        console.log(route)
                         if (route.name === 'MyPass') {
                             iconName = 'compass-outline'
                         } else if (route.name === 'Profile') {
@@ -35,15 +34,5 @@ export const Home = () => {
 
     )
 };
-
-const styles = StyleSheet.create({
-    baseText: {
-        fontFamily: "Cochin"
-    },
-    titleText: {
-        fontSize: 20,
-        fontWeight: "bold"
-    }
-});
 
 export default Home;

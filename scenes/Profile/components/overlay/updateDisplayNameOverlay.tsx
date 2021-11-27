@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import {styles} from "../../../../styles";
 import {Button, Input, Overlay, Text} from "react-native-elements";
-import {forgetPassword, updateDisplayName} from "../../../../firebase/firebaseUserFunction";
 import {View} from "react-native";
 import {updateUserName} from "../../../../firebase/user_database";
 
@@ -21,9 +20,7 @@ export const UpdateDisplayNameOverlay = (props: UpdateDisplayNameOverlayProps) =
 
     const submitUpdateDisplayName = async () => {
         await updateUserName(props.user.uid, displayName).then( res =>{
-            console.log(res)
             if( res!== 'Success'){
-                console.log(res)
                 setFireBaseRes(res)
             }
             else{
