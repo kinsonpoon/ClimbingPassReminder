@@ -6,6 +6,7 @@ import {TextInput, View} from "react-native";
 
 interface SignUpOverlayProps {
     toggleOverlay: (visible: boolean) => void
+    reloadStorage: () => void
 }
 
 export const SignUpOverlay = (props: SignUpOverlayProps) => {
@@ -26,6 +27,7 @@ export const SignUpOverlay = (props: SignUpOverlayProps) => {
         const response = await signUp(email, password, username)
         if (response !== 'success') {
             setFireBaseRes(response)
+            props.reloadStorage()
         }
         else{
             setFireBaseRes('Please check ur email')

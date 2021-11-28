@@ -55,6 +55,7 @@ export const findAllMyRequest = async (user) => {
         const records: any = []
         snapshot.forEach(e => {
             console.log(e)
+            console.log(e.key)
             const targetEmail = e.child('target').val()
             const from = e.child('from').val()
             const username = e.child('username').val()

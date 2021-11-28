@@ -1,17 +1,15 @@
 import React from "react";
 import firebase from "firebase/compat";
-import {updateUserName, writeUserData} from "./user_database";
+import {writeUserData} from "./user_database";
 import {storeUserLocal} from "../localStorage/passStorage";
 
 export const signUp = async (email: string, password: string, username: string) =>{
     return firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
         const user = userCredential.user
-        user?.sendEmailVerification()
+        // user?.sendEmailVerification()
         writeUserData(user?.uid, username, user?.email)
-
-        return storeUserLocal(user, username).then( res =>{
-            return 'Success'
-        }).catch( err => {return err.message})
+        storeUserLocal(user, username)
+        return 'Success'
     })
         .catch((error) => {
             return error.message
