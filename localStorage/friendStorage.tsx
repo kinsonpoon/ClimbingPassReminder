@@ -1,5 +1,26 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+export const storeFdsPass = async (value: any) => {
+    try {
+        const jsonValue = JSON.stringify(value)
+        await AsyncStorage.setItem('@fdSharePass', jsonValue)
+    } catch (e) {
+        alert(e)
+    }
+}
+
+export const getAllFdsPassLocal = async() =>{
+    try {
+        let jsonValue = await AsyncStorage.getItem('@fdSharePass')
+        if (jsonValue == null) {
+            return []
+        }
+        return JSON.parse(jsonValue)
+    } catch (e) {
+        return []
+    }
+}
+
 export const storeFds = async (value: any) => {
     try {
         const jsonValue = JSON.stringify(value)

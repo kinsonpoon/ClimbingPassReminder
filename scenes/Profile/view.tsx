@@ -5,6 +5,7 @@ import Profile from "./main/view";
 import {LoginScreen} from "./components/userLogin";
 import {getAllFds, getAllFriendRequest} from "../../localStorage/friendStorage";
 import {getUserLocal} from "../../localStorage/passStorage";
+import {getAllSharePassFromOthers} from "../../firebase/findSharePass_database";
 
 export const ProfileScreen = () =>{
     const {initializing, user} = useAuth()
