@@ -9,6 +9,7 @@ import {isThisAddable} from "../../../../localStorage/friendStorage";
 interface SearchUserOverlayProps {
     toggleOverlay: (visible: boolean) => void
     user: any
+    userLocal: any
 }
 
 export const SearchUserOverlay = (props: SearchUserOverlayProps) => {
@@ -52,12 +53,28 @@ export const SearchUserOverlay = (props: SearchUserOverlayProps) => {
         await addFd(props.user, fireBaseRes)
     }
 
+    const validateUsername = (username) => {
+        return username.match(
+            /^([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)$/
+        );
+    };
+
     function checkDisplayName(input) {
+        input = input.replace(' ','_')
         setDisplayName(input)
-        if (input.length < 3) {
+        if(input == props.userLocal.username){
+            setError(true)
+            setErrMessage('please set a different displayName')
+        }
+        else if (input.length < 3) {
             setError(true)
             setErrMessage('please set displayName with length >= 3')
-        } else {
+        }
+        else if(!validateUsername(input)){
+            setError(true)
+            setErrMessage('Username not match instagram rules')
+        }
+        else {
             setError(false)
             setErrMessage('')
         }
@@ -92,8 +109,9 @@ export const SearchUserOverlay = (props: SearchUserOverlayProps) => {
                 </Picker>
                 {searchOption == 'email' &&
                 <View>
-                    <Text style={{color:'grey', marginLeft:5}}>Enter Email</Text>
+                    <Text style={styles.textInputTitle}>Enter Email</Text>
                     <TextInput
+                        style={styles.textInputContainer}
                         placeholder='...'
                         value={email}
                         onChangeText={checkEmail}
@@ -103,8 +121,9 @@ export const SearchUserOverlay = (props: SearchUserOverlayProps) => {
                 }
                 {searchOption == 'username' &&
                 <View>
-                    <Text style={{color:'grey', marginLeft:5}}>Enter Display Name</Text>
+                    <Text style={styles.textInputTitle}>Enter Display Name</Text>
                     <TextInput
+                        style={styles.textInputContainer}
                         placeholder='...'
                         value={displayName}
                         onChangeText={checkDisplayName}

@@ -89,3 +89,26 @@ export const extendMemberShip = async(gymName:string, startDate: string, endDate
         alert(e)
     }
 }
+
+export const storeUserLocal = async(user: any, username: string)=>{
+    try{
+        let localUser = {
+            uid: user.uid,
+            email: user.email,
+            username: username
+        }
+        const jsonValue = JSON.stringify(localUser)
+        await AsyncStorage.setItem('@localUser', jsonValue)
+    } catch (e) {
+        alert(e)
+    }
+}
+
+export const getUserLocal = async () => {
+    try {
+        let jsonValue = await AsyncStorage.getItem('@localUser')
+        return JSON.parse(jsonValue!)
+    } catch (e) {
+        alert(e)
+    }
+}

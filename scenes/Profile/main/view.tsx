@@ -7,11 +7,11 @@ import {styles} from "../../../styles";
 import {writeUploadPasses} from "../../../firebase/user_database";
 import {SearchUserOverlay} from "../components/overlay/searchUserOverlay";
 import {findAllMyFd, findAllMyRequest} from "../../../firebase/friend_request_database";
-import {getAllFriendRequest} from "../../../localStorage/friendStorage";
 import {FriendRequestOverlay} from "../components/overlay/friendRequestOverlay";
 
 interface profileProps {
     user: any
+    userLocal: any
     reloadStorage: () => void
     fds: any
     fdRequest: any
@@ -23,7 +23,6 @@ export const Profile = (props: profileProps) => {
     const [isClickSearch, setIsClickSearch] = useState(false)
     const [isClickedFriend, setIsClickedFriend] = useState(false)
     const [isClickedRequest, setIsClickedRequest] = useState(false)
-
 
     const uploadPassToCloud = async() =>{
         const [result,result2,result3] = await Promise.all([writeUploadPasses(props.user.uid),findAllMyRequest(props.user),findAllMyFd(props.user)])
@@ -49,8 +48,8 @@ export const Profile = (props: profileProps) => {
             <ListItem.Accordion
                 content={
                     <ListItem.Content>
-                        <ListItem.Title>{props.user.email}</ListItem.Title>
-                        <ListItem.Subtitle>DisplayName: {props.user.displayName}</ListItem.Subtitle>
+                        <ListItem.Title>{props.userLocal?.email}</ListItem.Title>
+                        <ListItem.Subtitle>DisplayName: {props.userLocal?.username}</ListItem.Subtitle>
                     </ListItem.Content>
                 }
                 isExpanded={expanded}
@@ -65,7 +64,11 @@ export const Profile = (props: profileProps) => {
                                 setIsClickedUpdateDisplayName(!isClickedUpdateDisplayName)
                             }}/>
                             {isClickedUpdateDisplayName &&
-                            <UpdateDisplayNameOverlay user={props.user} toggleOverlay={setIsClickedUpdateDisplayName}/>}
+                            <UpdateDisplayNameOverlay
+                                user={props.user}
+                                userLocal={props.userLocal}
+                                toggleOverlay={setIsClickedUpdateDisplayName}
+                                reloadStorage={props.reloadStorage}/>}
                         </View>
                     </ListItem.Content>
                 </ListItem>
@@ -77,7 +80,10 @@ export const Profile = (props: profileProps) => {
                     <ListItem.Chevron/>
                 </ListItem>
                 {isClickSearch &&
-                <SearchUserOverlay user={props.user} toggleOverlay={setIsClickSearch}/>
+                <SearchUserOverlay
+                    user={props.user}
+                    userLocal={props.userLocal}
+                    toggleOverlay={setIsClickSearch}/>
                 }
                 <ListItem bottomDivider>
                     <Avatar icon={{name: 'users', type: 'font-awesome'}} containerStyle={{backgroundColor: 'black'}}/>

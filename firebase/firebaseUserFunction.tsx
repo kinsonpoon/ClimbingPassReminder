@@ -1,13 +1,17 @@
 import React from "react";
 import firebase from "firebase/compat";
 import {updateUserName, writeUserData} from "./user_database";
+import {storeUserLocal} from "../localStorage/passStorage";
 
-export const signUp = async (email: string, password: string) =>{
+export const signUp = async (email: string, password: string, username: string) =>{
     return firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
         const user = userCredential.user
         user?.sendEmailVerification()
-        writeUserData(user?.uid, user?.displayName, user?.email)
-        return 'Success'
+        writeUserData(user?.uid, username, user?.email)
+
+        return storeUserLocal(user, username).then( res =>{
+            return 'Success'
+        }).catch( err => {return err.message})
     })
         .catch((error) => {
             return error.message
@@ -41,12 +45,3 @@ export const logOut = async() =>{
     })
 }
 
-
-export const updateDisplayName = async (user, displayName: string) =>{
-    return user.updateProfile({displayName: displayName}).then((res) =>{
-        updateUserName(user?.uid, displayName)
-        return 'Success'
-    }).catch((error)=>{
-        return error
-    })
-}

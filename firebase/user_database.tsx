@@ -1,7 +1,7 @@
 import React from "react";
 
 import {getDatabase, ref, set, update, query} from 'firebase/database'
-import {getAllPasses} from "../localStorage/passStorage";
+import {getAllPasses, storeUserLocal} from "../localStorage/passStorage";
 import firebase from "firebase/compat";
 
 export const writeUserData = async(userId, name, email) =>{
@@ -9,9 +9,7 @@ export const writeUserData = async(userId, name, email) =>{
     return await set(ref(db,'user/'+ userId),{
         username: name,
         email: email,
-        gyms: [],
-        fds: [],
-        fdRequest: []
+        gyms: []
     }).then( (res) =>{
         return 'Success'
     }).catch( (error) =>{
@@ -19,17 +17,20 @@ export const writeUserData = async(userId, name, email) =>{
     })
 }
 
-export const updateUserName = async(userId, name) =>{
+export const updateUserName = async(user, name) =>{
     return await searchUsers(name, 'username').then(res =>{
         if(res!=null && res != 'No user find'){
             return 'This username is already been used'
         }
         else{
             const db = getDatabase()
-        return update(ref(db,'user/'+ userId+'/'),{
+        return update(ref(db,'user/'+ user.uid+'/'),{
             username: name,
         }).then( (res) =>{
-            return 'Success'
+            return storeUserLocal(user, name).then( res =>{
+                return 'Success'
+            })
+                .catch( err=>{ return err.message})
         }).catch( (error) =>{
             return error.message
         }

@@ -58,4 +58,16 @@ export const styles = StyleSheet.create({
     minusButtonTitle: {
         color: 'black'
     },
+    textInputTitle: {
+        color:'grey',
+        marginLeft:8,
+        fontWeight: "bold"
+    },
+    textInputContainer: {
+        marginLeft:8,
+        borderBottomColor: 'grey',
+        borderBottomWidth: 1,
+        fontSize:20,
+        minHeight: 30
+    }
 })
