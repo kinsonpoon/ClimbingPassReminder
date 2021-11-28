@@ -59,11 +59,11 @@ export const AddPersonalPassPopUp = (props: AddPersonalPassPopUpProps) => {
                     <Text>Add SharePass for {props.gymName}</Text>
                     <Text>expire in {getNewEndDate(date, parseInt(selectedValue))}</Text>
                     <Text>New share pass last
-                        for {selectedValue == '99999999' ? 'ever' : selectedValue + ' days'}</Text>
+                        for {selectedValue == '99999' ? 'ever' : selectedValue + ' days'}</Text>
                     <Picker
                         selectedValue={selectedValue}
                         onValueChange={setSelectedValue}>
-                        <Picker.Item label={'Never'} value={'99999999'}/>
+                        <Picker.Item label={'Never'} value={'99999'}/>
                         <Picker.Item label={'90'} value={'90'}/>
                         <Picker.Item label={'120'} value={'120'}/>
                         <Picker.Item label={'365'} value={'365'}/>

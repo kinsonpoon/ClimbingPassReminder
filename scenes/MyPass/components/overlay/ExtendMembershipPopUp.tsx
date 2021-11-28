@@ -25,7 +25,6 @@ function getNewStartDate(lastEndDate: string) {
     if (newStartDate.getTime() < (new Date()).getTime()) {
         newStartDate = new Date()
     }
-    console.log(newStartDate)
     return (
         newStartDate
     )

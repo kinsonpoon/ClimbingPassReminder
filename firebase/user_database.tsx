@@ -44,6 +44,12 @@ export const updateUserName = async(user, name) =>{
 export const writeUploadPasses = async(userId) =>{
     const db = getDatabase()
     const allPasses = await getAllPasses()
+    allPasses.forEach( gym =>{
+        if(gym.sharePass.length>0){
+            set(ref(db, 'sharepass/'+ gym.name + '/' + userId),
+                gym.sharePass)
+        }
+    })
     return await update(ref(db,'user/'+ userId +'/'),{
         gyms: allPasses
     }).then( (res) =>{

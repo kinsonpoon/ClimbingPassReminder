@@ -3,7 +3,6 @@ import {styles} from "../../../../styles";
 import {Button, Input, Overlay, Text} from "react-native-elements";
 import {TextInput, View} from "react-native";
 import {updateUserName} from "../../../../firebase/user_database";
-import {storeUserLocal} from "../../../../localStorage/passStorage";
 
 interface UpdateDisplayNameOverlayProps {
     user: any
@@ -45,7 +44,7 @@ export const UpdateDisplayNameOverlay = (props: UpdateDisplayNameOverlayProps) =
     function checkDisplayName(input) {
         input = input.replace(' ','_')
         setDisplayName(input)
-        if(input == props.userLocal.username){
+        if(props.userLocal?.username && input == props.userLocal.username){
             setError(true)
             setErrMessage('please set a different displayName')
         }
@@ -73,6 +72,7 @@ export const UpdateDisplayNameOverlay = (props: UpdateDisplayNameOverlayProps) =
                     placeholder='name...'
                     value={displayName}
                     onChangeText={checkDisplayName}
+                    autoCapitalize={"none"}
                 />
                 <Text>{errMessage}</Text>
                 <Text>{fireBaseRes}</Text>
