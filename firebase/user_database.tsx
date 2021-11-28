@@ -1,6 +1,6 @@
 import React from "react";
 
-import {getDatabase, ref, set, update, query} from 'firebase/database'
+import {getDatabase, ref, set, update} from 'firebase/database'
 import {getAllPasses, storeUserLocal} from "../localStorage/passStorage";
 import firebase from "firebase/compat";
 
@@ -48,6 +48,9 @@ export const writeUploadPasses = async(userId) =>{
         if(gym.sharePass.length>0){
             set(ref(db, 'sharepass/'+ gym.name + '/' + userId),
                 gym.sharePass)
+        }
+        else{
+            set(ref(db, 'sharepass/'+ gym.name + '/' + userId),null)
         }
     })
     return await update(ref(db,'user/'+ userId +'/'),{
