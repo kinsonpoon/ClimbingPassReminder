@@ -9,7 +9,7 @@ export const addFd = async (user, targetUser) => {
     await set(ref(db, 'relationship/' + targetUser.uid + '/' + user.uid), {
         from: user.email,
         target: targetUser.email,
-        username: user.displayName,
+        username: user.username,
         status: 0
     }).then((res) => {
         return 'Success'
@@ -19,15 +19,42 @@ export const addFd = async (user, targetUser) => {
 
 }
 
-export const confirmFd = async (ownEmail, targetEmail) => {
-
+const confirmFriendSide = async (user, request) => {
+    const db = getDatabase()
+    return await set(ref(db, 'relationship/' + request.fromUid + '/' + user.uid), {
+        from: user.email,
+        target: request.from,
+        username: user.username,
+        status: 1
+    }).then((res) => {
+        return 'Success'
+    }).catch((error) => {
+        return error.message
+    })
 }
 
-export const rejectRequest = async (ownEmail, targetEmail) => {
+const confirmMySide = async (user, request) =>{
     const db = getDatabase()
-    return await update(ref(db, 'user/' + ownEmail + '/' + targetEmail), {
-        status: 2
+    return await set(ref(db, 'relationship/' + user.uid + '/' + request.fromUid), {
+        from: request.from,
+        target: user.email,
+        username: request.username,
+        status: 1
     }).then((res) => {
+        return 'Success'
+    }).catch((error) => {
+        return error.message
+    })
+}
+
+export const confirmFdToFireBase = async (user, request) => {
+    const [result2, result3] = await Promise.all([confirmFriendSide(user,request), confirmMySide(user, request)])
+    return result2
+}
+
+export const rejectRequest = async (user, requestUser) => {
+    const db = getDatabase()
+    return await set(ref(db, 'user/' + user.uid + '/' + requestUser.uid), null).then((res) => {
         return 'Success'
     }).catch((error) => {
         return error.message
@@ -38,7 +65,7 @@ export const findAllMyFd = async (user) => {
     return await firebase.database().ref('relationship/' + user.uid).orderByChild('status').equalTo(1).once('value').then((snapshot) => {
         const records: any = []
         snapshot.forEach(e => {
-            const targetEmail = e.child('targetEmail').val()
+            const targetEmail = e.child('target').val()
             const from = e.child('from').val()
             const status = e.child('status').val()
             records.push({targetEmail:targetEmail, status:status, from: from})
@@ -54,16 +81,15 @@ export const findAllMyRequest = async (user) => {
     return await firebase.database().ref('relationship/' + user.uid).orderByChild('status').equalTo(0).once('value').then((snapshot) => {
         const records: any = []
         snapshot.forEach(e => {
-            console.log(e)
-            console.log(e.key)
+            const uid = e.key
             const targetEmail = e.child('target').val()
             const from = e.child('from').val()
             const username = e.child('username').val()
             const status = e.child('status').val()
-            records.push({username:username, targetEmail:targetEmail, status:status, from: from})
+            records.push({username:username, targetEmail:targetEmail, status:status, from: from, fromUid: uid})
         })
         storeAllFriendRequest(records)
-        return 'findAllMyFd(props.user)'
+        return 'findAllMyRequest(props.user)'
     }).catch(err => {
             return err.message
         })

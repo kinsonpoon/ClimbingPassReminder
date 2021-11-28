@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {styles} from "../../../../styles";
 import {Button, Input, Overlay, Text} from "react-native-elements";
 import {Picker, TextInput, View} from "react-native";
-import {searchUsers, writeUploadPasses} from "../../../../firebase/user_database";
+import {searchUsers} from "../../../../firebase/user_database";
 import {addFd, findAllMyFd, findAllMyRequest} from "../../../../firebase/friend_request_database";
 import {isThisAddable} from "../../../../localStorage/friendStorage";
 
@@ -31,7 +31,7 @@ export const SearchUserOverlay = (props: SearchUserOverlayProps) => {
         await searchUsers(searchOption=='email'?email:displayName, searchOption).then(res =>{
             if(res !=null && res != 'No user find'){
                 isThisAddable(props.user, res.email).then( res2 =>{
-                    if(res!=null){
+                    if(res2!=null){
                         alert(res2)
                         setFireBaseError(res2)
                     }
@@ -50,7 +50,7 @@ export const SearchUserOverlay = (props: SearchUserOverlayProps) => {
     }
 
     const sendFriendRequest = async() =>{
-        await addFd(props.user, fireBaseRes)
+        await addFd(props.userLocal, fireBaseRes)
     }
 
     const validateUsername = (username) => {

@@ -43,7 +43,7 @@ export const ProfileScreen = () =>{
     }
 
     if(!user){
-        return <LoginScreen/>
+        return <LoginScreen reloadStorage={reloadFromChild}/>
     }
 
     return( <Profile

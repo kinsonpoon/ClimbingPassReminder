@@ -27,7 +27,7 @@ export const UpdateDisplayNameOverlay = (props: UpdateDisplayNameOverlayProps) =
             }
             else{
                 setFireBaseRes('Updated')
-                props.reloadStorage()
+                props.reloadStorage
             }
         })
             .catch(err =>{

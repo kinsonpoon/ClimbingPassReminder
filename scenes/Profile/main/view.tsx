@@ -23,17 +23,14 @@ export const Profile = (props: profileProps) => {
     const [isClickSearch, setIsClickSearch] = useState(false)
     const [isClickedFriend, setIsClickedFriend] = useState(false)
     const [isClickedRequest, setIsClickedRequest] = useState(false)
-
     const uploadPassToCloud = async() =>{
         const [result,result2,result3] = await Promise.all([writeUploadPasses(props.user.uid),findAllMyRequest(props.user),findAllMyFd(props.user)])
-
+        props.reloadStorage()
         if(result=='Success'){
             alert('Upload success')
-            props.reloadStorage()
         }
         else{
             alert(result)
-            props.reloadStorage()
         }
     }
 
@@ -102,7 +99,7 @@ export const Profile = (props: profileProps) => {
                     </ListItem.Content>
                     <ListItem.Chevron/>
                 </ListItem>
-                {isClickedRequest && props.fdRequest.length>0 && <FriendRequestOverlay reloadParent={props.reloadStorage} toggleOverlay={setIsClickedRequest} data={props.fdRequest}/>}
+                {isClickedRequest && props.fdRequest.length>0 && <FriendRequestOverlay  userLocal={props.userLocal} reloadParent={props.reloadStorage} toggleOverlay={setIsClickedRequest} data={props.fdRequest}/>}
             </View>
             </ListItem.Accordion>
             <Button title={'Log Out'} onPress={() => {
