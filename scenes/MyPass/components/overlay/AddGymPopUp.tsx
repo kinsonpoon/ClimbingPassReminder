@@ -1,11 +1,12 @@
 import React from 'react'
 import {View} from "react-native";
-import {Button, Input, Overlay} from "react-native-elements";
+import {Button, Input, Overlay, Text} from "react-native-elements";
 import {useState} from "react";
 import {styles} from "../../../../styles";
 // import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 // import { GOOGLE_API_KEY } from "@env";
 import {addNewGym} from "../../../../localStorage/passStorage";
+import {GymSelect} from "../../../../sharedComponent/select/GymSelect";
 
 interface AddGymPopUpProps{
     setLoading: (loading: boolean) => void
@@ -13,7 +14,7 @@ interface AddGymPopUpProps{
 }
 
 export const AddGymPopUp =(props: AddGymPopUpProps) => {
-    const [gymName, setGymName] = useState('')
+    const [gymName, setGymName] = useState('AtticV')
     const [error, setError] = useState(false)
     const [openMapView, setOpenMapView] = useState(false)
     const submit = async() => {
@@ -35,14 +36,10 @@ export const AddGymPopUp =(props: AddGymPopUpProps) => {
     return (
         <View>
             <Overlay overlayStyle={styles.overlay} isVisible={true} onBackdropPress={close}>
-                <Input
-                    label='Name'
-                    placeholder='name...'
-                    value={gymName}
-                    onChangeText={setGymName}
-                    errorMessage={'Input cannot be empty'}
-                    renderErrorMessage={error}
-                />
+                <GymSelect
+                searchOption={gymName}
+                setSearchOption={setGymName}/>
+                <Text>U have selected {gymName}</Text>
                 <Button title="Submit" onPress={submit} />
             </Overlay>
         </View>

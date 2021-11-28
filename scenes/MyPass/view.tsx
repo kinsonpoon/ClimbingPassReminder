@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, SafeAreaView, StatusBar, ScrollView, View} from "react-native";
-import {Button} from 'react-native-elements'
+import {StyleSheet, SafeAreaView, StatusBar, ScrollView} from "react-native";
+import {Button, Text} from 'react-native-elements'
 import {Icon} from 'react-native-elements';
 import {GymAccordionList} from "./components/GymAccordionList";
 import {getAllPasses} from "../../localStorage/passStorage";
@@ -20,11 +20,12 @@ export const MyPass = () => {
             setGetData(res)
             setLoading(false)
         })
+        return (<Text>Loading</Text>)
     }
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView>
-                {!loading &&
+                {!loading && getData.length> 0 &&
                     <GymAccordionList gyms={getData} setLoading={setLoadingByChild}/>
                 }
                 <Button title='New Gym' icon={<Icon name='add' size={20} color='white'/>}

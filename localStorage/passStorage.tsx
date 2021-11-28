@@ -14,7 +14,7 @@ export const getAllPasses = async () => {
     try {
         let jsonValue = await AsyncStorage.getItem('@allPasses')
         if (jsonValue == null) {
-            await storeAllPasses(fakeData)
+            await storeAllPasses([])
             jsonValue = await AsyncStorage.getItem('@allPasses')
             return JSON.parse(jsonValue!)
         }
