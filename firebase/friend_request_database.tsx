@@ -54,7 +54,7 @@ export const confirmFdToFireBase = async (user, request) => {
 
 export const rejectRequest = async (user, requestUser) => {
     const db = getDatabase()
-    return await set(ref(db, 'user/' + user.uid + '/' + requestUser.uid), null).then((res) => {
+    return await set(ref(db, 'user/' + user.uid + '/' + requestUser.fromUid), null).then((res) => {
         return 'Success'
     }).catch((error) => {
         return error.message
@@ -68,7 +68,8 @@ export const findAllMyFd = async (user) => {
             const targetEmail = e.child('target').val()
             const from = e.child('from').val()
             const status = e.child('status').val()
-            records.push({targetEmail:targetEmail, status:status, from: from})
+            const uid = e.key
+            records.push({targetEmail:targetEmail, status:status, from: from, uid: uid})
         })
         storeFds(records)
         return 'findAllMyFd(props.user)'

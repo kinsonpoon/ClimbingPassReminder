@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import {Avatar, ListItem, Overlay, CheckBox, Text, Button, Icon} from "react-native-elements";
-import {ScrollView, View} from "react-native";
+import {Alert, ScrollView, View} from "react-native";
 import {styles} from "../../../../styles";
-import {confirmFdToFireBase} from "../../../../firebase/friend_request_database";
+import {confirmFdToFireBase, rejectRequest} from "../../../../firebase/friend_request_database";
 
 interface FriendRequestOverlayProps{
     reloadParent: () => void
@@ -40,10 +40,26 @@ export const FriendRequestOverlay = (props: FriendRequestOverlayProps) =>{
     const confirmUserRequest = async() =>{
         const selectedRequest = props.data.filter( req => checkedList.includes(req.from))
         selectedRequest.forEach( request =>{
-            console.log(request)
-            console.log(props.userLocal)
             confirmFdToFireBase(props.userLocal, request)
         })
+        setTimeout(props.reloadParent, 100)
+    }
+
+    const confirmDeleteButton = () =>{
+        Alert.alert(
+            'Confirm delete?',
+            'They will be deleted after clicked yes',
+            [{text:'No'},{text: 'Yes', onPress: () =>{
+                    deleteRequests()
+                }}]
+        )
+    }
+    const deleteRequests = () =>{
+        const selectedRequest = props.data.filter( req => checkedList.includes(req.from))
+        selectedRequest.forEach( request =>{
+            rejectRequest(props.userLocal, request)
+        })
+        setTimeout(props.reloadParent, 100)
     }
 
     return (
@@ -62,6 +78,7 @@ export const FriendRequestOverlay = (props: FriendRequestOverlayProps) =>{
                         </ListItem>
                     )):<View>No new request</View>}
                     <Button buttonStyle={styles.marginVer} disabled={checkedList.length<1} title={'confirm'} onPress={() =>confirmUserRequest()}/>
+                    <Button buttonStyle={styles.warning} disabled={checkedList.length<1} title={'delete'} onPress={() =>confirmDeleteButton()}/>
                 </ScrollView>
             </Overlay>
         </View>

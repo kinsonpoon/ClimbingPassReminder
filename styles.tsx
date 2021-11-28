@@ -23,6 +23,10 @@ export const styles = StyleSheet.create({
     marginVer:{
         marginVertical: 5
     },
+    warning:{
+        backgroundColor: 'red',
+        marginVertical: 5
+    },
     overlayTitle:{
       fontSize: 25,
       textAlign: "center",

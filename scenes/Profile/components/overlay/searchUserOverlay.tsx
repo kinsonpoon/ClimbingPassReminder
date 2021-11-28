@@ -115,6 +115,7 @@ export const SearchUserOverlay = (props: SearchUserOverlayProps) => {
                         placeholder='...'
                         value={email}
                         onChangeText={checkEmail}
+                        autoCapitalize={"none"}
                     />
                     <Text>{emailErrMessage}</Text>
                 </View>
