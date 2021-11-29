@@ -5,11 +5,13 @@ import {Icon} from 'react-native-elements';
 import {GymAccordionList} from "./components/GymAccordionList";
 import {getAllPasses} from "../../localStorage/passStorage";
 import {AddGymPopUp} from "./components/overlay/AddGymPopUp";
+import {getAllFdsPassLocal} from "../../localStorage/friendStorage";
 
 export const MyPass = () => {
     const [loading, setLoading] = useState(true)
     const [getData, setGetData] = useState([])
     const [isAddGymPopUp, setIsAddGymPopUp] = useState(false)
+    const [allFdPasses, setAllFdPasses] = useState([])
 
     const setLoadingByChild = (value: boolean) =>{
         setLoading(value)
@@ -18,7 +20,10 @@ export const MyPass = () => {
     if (loading) {
         getAllPasses().then(res => {
             setGetData(res)
-            setLoading(false)
+            getAllFdsPassLocal().then( res =>{
+                setAllFdPasses(res)
+                setLoading(false)
+            })
         })
         return (<Text>Loading</Text>)
     }
@@ -26,7 +31,7 @@ export const MyPass = () => {
         <SafeAreaView style={styles.container}>
             <ScrollView>
                 {!loading && getData.length> 0 &&
-                    <GymAccordionList gyms={getData} setLoading={setLoadingByChild}/>
+                    <GymAccordionList allFdPasses={allFdPasses} gyms={getData} setLoading={setLoadingByChild}/>
                 }
                 <Button title='New Gym' icon={<Icon name='add' size={20} color='white'/>}
                         onPress={() => setIsAddGymPopUp(true)}/>

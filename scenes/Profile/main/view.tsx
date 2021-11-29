@@ -8,6 +8,8 @@ import {writeUploadPasses} from "../../../firebase/user_database";
 import {SearchUserOverlay} from "../components/overlay/searchUserOverlay";
 import {findAllMyFd, findAllMyRequest} from "../../../firebase/friend_request_database";
 import {FriendRequestOverlay} from "../components/overlay/friendRequestOverlay";
+import {getAllSharePassFromOthers} from "../../../firebase/findSharePass_database";
+import {FriendListOverlay} from "../components/overlay/friendListOverlay";
 
 interface profileProps {
     user: any
@@ -32,12 +34,13 @@ export const Profile = (props: profileProps) => {
         else{
             alert(result)
         }
+        await getAllSharePassFromOthers()
     }
 
     return (
         <View>
             <View style={{backgroundColor: 'white'}}>
-                <Button titleStyle={{color: 'black'}} buttonStyle={styles.uploadButton} title={'Upload to cloud'}
+                <Button titleStyle={{color: 'black'}} buttonStyle={styles.uploadButton} title={'Async to cloud'}
                         onPress={() => {
                             uploadPassToCloud()
                         }}/>
@@ -82,7 +85,7 @@ export const Profile = (props: profileProps) => {
                     userLocal={props.userLocal}
                     toggleOverlay={setIsClickSearch}/>
                 }
-                <ListItem bottomDivider>
+                <ListItem onPress={()=>{setIsClickedFriend(!isClickedFriend)}} bottomDivider>
                     <Avatar icon={{name: 'users', type: 'font-awesome'}} containerStyle={{backgroundColor: 'black'}}/>
                     <ListItem.Content>
                         <ListItem.Title>Your Friends</ListItem.Title>
@@ -90,6 +93,10 @@ export const Profile = (props: profileProps) => {
                     </ListItem.Content>
                     <ListItem.Chevron/>
                 </ListItem>
+                {isClickedFriend &&
+                <FriendListOverlay
+                    userLocal={props.userLocal} reloadParent={props.reloadStorage} toggleOverlay={setIsClickedFriend} data={props.fds}
+                />}
                 <ListItem bottomDivider onPress={()=>{setIsClickedRequest(true)}}>
                     <Avatar icon={{name: 'envelope', type: 'font-awesome'}}
                             containerStyle={{backgroundColor: 'black'}}/>

@@ -27,9 +27,9 @@ export const getAllSharePassFromOthers = async () => {
                         const endDate = e.child('endDate').val()
                         const count = e.child('count').val()
                         const user = fd.from
-                        console.log(endDate, count, user)
+                        const username = fd.username
                         sub.list.push({
-                            endDate: endDate, count: count, user: user
+                            endDate: endDate, count: count, user: user, username: username
                         })
                     })
                 }

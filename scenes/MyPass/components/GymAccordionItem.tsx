@@ -1,21 +1,26 @@
 import React, {useState} from "react";
-import {ListItem} from "react-native-elements";
+import {Avatar, Button, Icon, ListItem} from "react-native-elements";
 import {SharePassAccordion} from "./SharePassAccordion";
 import {MemberShipAccordion} from "./MemberShipAccordion";
 import {View} from "react-native";
 import {PersonalPassAccordion} from "./PersonalPassAccordion";
+import {ViewFdPassOverlay} from "./overlay/ViewFdPassOverlay";
 
 interface GymAccordionItemProps extends GymType {
     setLoading: (loading: boolean) => void
+    fdPasses: any
 }
 
 export const GymAccordionItem = (props: GymAccordionItemProps) => {
     const [expanded, setExpanded] = useState(false)
+    const [isViewFdPasses, setIsViewFdPasses] = useState(false)
     return (
         <ListItem.Accordion
             content={
                     <ListItem.Content>
-                        <ListItem.Title>{props.name}</ListItem.Title>
+                        <ListItem.Title>{props.name} {props.fdPasses.length>0 &&
+                        <Icon onPress={()=>{setIsViewFdPasses(!isViewFdPasses)}} style={{display: 'flex', alignSelf:'flex-end'}} name={'search'} type={'font-awesome'}/>}</ListItem.Title>
+                        {isViewFdPasses &&<ViewFdPassOverlay toggleOverlay={setIsViewFdPasses} gymName={props.name} sharepasses={props.fdPasses}/>}
                     </ListItem.Content>
             }
             isExpanded={expanded}

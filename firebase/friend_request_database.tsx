@@ -69,7 +69,8 @@ export const findAllMyFd = async (user) => {
             const from = e.child('from').val()
             const status = e.child('status').val()
             const uid = e.key
-            records.push({targetEmail:targetEmail, status:status, from: from, uid: uid})
+            const username = e.child('username').val()
+            records.push({targetEmail:targetEmail, status:status, from: from, uid: uid, username: username})
         })
         storeFds(records)
         return 'findAllMyFd(props.user)'
