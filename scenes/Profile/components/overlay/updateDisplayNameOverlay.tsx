@@ -37,7 +37,7 @@ export const UpdateDisplayNameOverlay = (props: UpdateDisplayNameOverlayProps) =
 
     const validateUsername = (username) => {
         return username.match(
-            /^([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)$/
+            /^([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|\.(?!\.)){0,28}[A-Za-z0-9_])?)$/
         );
     };
 
