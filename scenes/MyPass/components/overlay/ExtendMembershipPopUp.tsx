@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import {Platform, View, Text, Picker} from "react-native";
 import {Button, Input, Overlay} from "react-native-elements";
 import {useState} from "react";

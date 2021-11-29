@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Avatar, Button, Icon, ListItem} from "react-native-elements";
+import {Icon, ListItem} from "react-native-elements";
 import {SharePassAccordion} from "./SharePassAccordion";
 import {MemberShipAccordion} from "./MemberShipAccordion";
 import {View} from "react-native";

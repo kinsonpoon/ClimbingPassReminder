@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {styles} from "../../../../styles";
-import {Button, Input, Overlay, Text} from "react-native-elements";
+import {Button, Overlay, Text} from "react-native-elements";
 import {Picker, TextInput, View} from "react-native";
 import {searchUsers} from "../../../../firebase/user_database";
 import {addFd, findAllMyFd, findAllMyRequest} from "../../../../firebase/friend_request_database";

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button, Icon, ListItem} from "react-native-elements";
+import {Button, ListItem} from "react-native-elements";
 import {styles} from "../../../styles";
 import {View} from "react-native";
 import {MinusSharePassPopUp} from "./overlay/MinusSharePassPopUp";

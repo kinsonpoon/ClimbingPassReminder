@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Avatar, ListItem, Overlay, CheckBox, Text, Button, Icon} from "react-native-elements";
+import {ListItem, Overlay, Button, Icon} from "react-native-elements";
 import {Alert, ScrollView, View} from "react-native";
 import {styles} from "../../../../styles";
 import {confirmFdToFireBase, rejectRequest} from "../../../../firebase/friend_request_database";

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {GymAccordionItem} from "./GymAccordionItem";
 import {View} from "react-native";
 

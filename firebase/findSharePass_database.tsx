@@ -1,6 +1,6 @@
 import React from "react";
 
-import {getDatabase, ref, get, update, query} from 'firebase/database'
+import {getDatabase, ref, get} from 'firebase/database'
 import {getAllPasses} from "../localStorage/passStorage";
 import {getAllFds, storeFdsPass} from "../localStorage/friendStorage";
 

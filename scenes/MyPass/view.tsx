@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, SafeAreaView, StatusBar, ScrollView} from "react-native";
 import {Button, Text} from 'react-native-elements'
 import {Icon} from 'react-native-elements';

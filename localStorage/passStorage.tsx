@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {fakeData, newEmptyGym, newEmptyPass, newMemberShip} from "../FakeData/FakeData";
+import {newEmptyGym, newEmptyPass, newMemberShip} from "../FakeData/FakeData";
 
 export const storeAllPasses = async (value: any) => {
     try {

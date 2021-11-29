@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import {View} from "react-native";
-import {Button, Input} from "react-native-elements";
-import {signUp} from "../../../firebase/firebaseUserFunction";
+import {Button} from "react-native-elements";
 import {styles} from "../../../styles";
 import {SignUpOverlay} from "./overlay/signUpOverlay";
 import {LoginOverlay} from "./overlay/loginOverlay";

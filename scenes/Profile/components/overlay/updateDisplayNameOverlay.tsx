@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {styles} from "../../../../styles";
-import {Button, Input, Overlay, Text} from "react-native-elements";
+import {Button, Overlay, Text} from "react-native-elements";
 import {TextInput, View} from "react-native";
 import {updateUserName} from "../../../../firebase/user_database";
 
