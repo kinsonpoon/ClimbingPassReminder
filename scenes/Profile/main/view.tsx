@@ -41,8 +41,8 @@ export const Profile = (props: profileProps) => {
         <View>
             <View style={{backgroundColor: 'white'}}>
                 <Button titleStyle={{color: 'black'}} buttonStyle={styles.uploadButton} title={'Async to cloud'}
-                        onPress={() => {
-                            uploadPassToCloud()
+                        onPress={ async() => {
+                            await uploadPassToCloud()
                         }}/>
             </View>
             <ListItem.Accordion
@@ -109,8 +109,8 @@ export const Profile = (props: profileProps) => {
                 {isClickedRequest && props.fdRequest.length>0 && <FriendRequestOverlay  userLocal={props.userLocal} reloadParent={props.reloadStorage} toggleOverlay={setIsClickedRequest} data={props.fdRequest}/>}
             </View>
             </ListItem.Accordion>
-            <Button title={'Log Out'} onPress={() => {
-                logOut()
+            <Button title={'Log Out'} onPress={async() => {
+                await logOut()
             }}/>
         </View>
     );

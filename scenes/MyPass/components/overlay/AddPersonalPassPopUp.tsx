@@ -1,7 +1,6 @@
-import React from 'react'
-import {View, Text, Picker} from "react-native";
+import React, {useState} from 'react'
+import {Picker, Text, View} from "react-native";
 import {Button, Input, Overlay} from "react-native-elements";
-import {useState} from "react";
 import {styles} from "../../../../styles";
 import {addSharePass} from "../../../../localStorage/passStorage";
 
@@ -13,8 +12,7 @@ interface AddPersonalPassPopUpProps {
 }
 
 function getNewStartDate() {
-    let newStartDate = new Date()
-    return newStartDate
+    return new Date()
 }
 
 function getNewEndDate(startDate: Date, last: number) {

@@ -1,10 +1,8 @@
-import React, {useEffect} from 'react'
-import {Platform, View, Text, Picker} from "react-native";
+import React, {useState} from 'react'
+import {Picker, Text, View} from "react-native";
 import {Button, Input, Overlay} from "react-native-elements";
-import {useState} from "react";
-import DateTimePicker from '@react-native-community/datetimepicker';
 import {styles} from "../../../../styles";
-import {addSharePass, extendMemberShip} from "../../../../localStorage/passStorage";
+import {addSharePass} from "../../../../localStorage/passStorage";
 
 
 interface AddSharePassPopUpProps {
@@ -14,8 +12,7 @@ interface AddSharePassPopUpProps {
 }
 
 function getNewStartDate() {
-    let newStartDate = new Date()
-    return newStartDate
+    return new Date()
 }
 
 function getNewEndDate(startDate: Date, last: number) {

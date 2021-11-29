@@ -1,6 +1,6 @@
 import React from 'react'
 import {View} from "react-native";
-import {Button, Input, Overlay, Text} from "react-native-elements";
+import {Button, Overlay, Text} from "react-native-elements";
 import {useState} from "react";
 import {styles} from "../../../../styles";
 // import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
