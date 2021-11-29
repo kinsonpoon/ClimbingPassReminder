@@ -16,7 +16,7 @@ interface AddGymPopUpProps{
 export const AddGymPopUp =(props: AddGymPopUpProps) => {
     const [gymName, setGymName] = useState('AtticV')
     const [error, setError] = useState(false)
-    const [openMapView, setOpenMapView] = useState(false)
+    // const [openMapView, setOpenMapView] = useState(false)
     const submit = async() => {
         if(gymName!='') {
             // setOpenMapView(true)

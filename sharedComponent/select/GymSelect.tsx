@@ -50,7 +50,6 @@ interface GymSelectProps{
 }
 
 export const GymSelect = (props: GymSelectProps) => {
-    const [searchOption, setSearchOption]: any = useState('email')
     return (
         <Picker
             selectedValue={props.searchOption}

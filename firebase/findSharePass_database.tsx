@@ -11,9 +11,6 @@ export const getAllSharePassFromOthers = async () => {
     const gymList = localGymList.map(function (obj) {
         return obj.name
     })
-    const friendUidList = localFriendList.map(function (obj) {
-        return obj.uid
-    })
     const localSharePassList: any = []
     await Promise.all(gymList.map(async gym => {
         const sub: any = {name: gym, list: []}
