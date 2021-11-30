@@ -28,12 +28,18 @@ export const AddSharePassPopUp = (props: AddSharePassPopUpProps) => {
     const [showInput, setShowInput] = useState(false);
 
     const onChangeCustomInput = (text) => {
-        const numberText = text.replace(/[^0-9]/g, '') == '' ? 0 : text.replace(/[^0-9]/g, '')
+        let numberText = text.replace(/[^0-9]/g, '') == '' ? '0' : text.replace(/[^0-9]/g, '')
+        if(numberText[0]==0 && numberText.length>1){
+            numberText = numberText.substring(1)
+        }
         setSelectedValue(numberText)
     }
 
     const onChangeCustomInputCount = (text) => {
-        const numberText = text.replace(/[^0-9]/g, '') == '' ? 0 : text.replace(/[^0-9]/g, '')
+        let numberText = text.replace(/[^0-9]/g, '') == '' ? '0' : text.replace(/[^0-9]/g, '')
+        if(numberText[0]==0 && numberText.length>1){
+            numberText = numberText.substring(1)
+        }
         setCount(numberText)
     }
 
