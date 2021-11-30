@@ -65,7 +65,7 @@ export const AddPersonalPassPopUp = (props: AddPersonalPassPopUpProps) => {
                         <Picker.Item label={'120'} value={'120'}/>
                         <Picker.Item label={'365'} value={'365'}/>
                     </Picker>
-                    <Button style={styles.marginVer} title="Custom input"
+                    <Button buttonStyle={styles.marginVer} title="Custom input"
                             onPress={() => {
                                 setShowInput(!showInput)
                             }}/>
@@ -73,7 +73,6 @@ export const AddPersonalPassPopUp = (props: AddPersonalPassPopUpProps) => {
                     <Input
                         label='Expires after'
                         placeholder='day...'
-                        keyboardType='numeric'
                         value={selectedValue}
                         onChangeText={onChangeCustomInput}
                     />
@@ -83,7 +82,6 @@ export const AddPersonalPassPopUp = (props: AddPersonalPassPopUpProps) => {
                     <Input
                         label='Number of passes'
                         placeholder='pass...'
-                        keyboardType='numeric'
                         value={count}
                         onChangeText={onChangeCustomInputCount}
                     />

@@ -65,7 +65,7 @@ export const AddSharePassPopUp = (props: AddSharePassPopUpProps) => {
                         <Picker.Item label={'120'} value={'120'}/>
                         <Picker.Item label={'365'} value={'365'}/>
                     </Picker>
-                    <Button style={styles.marginVer} title="Custom input"
+                    <Button buttonStyle={styles.marginVer} title="Custom input"
                             onPress={() => {
                                 setShowInput(!showInput)
                             }}/>
