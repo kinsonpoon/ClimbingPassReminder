@@ -20,7 +20,9 @@
       "supportsTablet": true,
       "config": {
         "googleMapsApiKey": "AIzaSyDAv8TBixrdzEoegK2pRa4dwExWmMFNsig"
-      }
+      },
+      "bundleIdentifier": "com.kinson.climbingPass",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
@@ -29,7 +31,9 @@
       },
       "config": {
         "googleMaps": {"apiKey": "AIzaSyDAv8TBixrdzEoegK2pRa4dwExWmMFNsig"}
-      }
+      },
+      "package": "com.kinson.climbingPass",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
