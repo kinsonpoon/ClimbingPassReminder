@@ -26,15 +26,15 @@ export const Profile = (props: profileProps) => {
     const [isClickedFriend, setIsClickedFriend] = useState(false)
     const [isClickedRequest, setIsClickedRequest] = useState(false)
     const uploadPassToCloud = async() =>{
-        const [result,result2,result3] = await Promise.all([writeUploadPasses(props.user.uid),findAllMyRequest(props.user),findAllMyFd(props.user)])
+        const [result,result2] = await Promise.all([writeUploadPasses(props.user.uid),getAllSharePassFromOthers()])
         props.reloadStorage()
         if(result=='Success'){
-            alert('Upload success')
+            alert('Async success')
         }
         else{
             alert(result)
         }
-        await getAllSharePassFromOthers()
+        console.log('uploaded')
     }
 
     return (

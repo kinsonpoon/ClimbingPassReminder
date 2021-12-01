@@ -3,6 +3,7 @@ import React from "react";
 import {getDatabase, ref, set} from 'firebase/database'
 import firebase from "firebase/compat";
 import {storeAllFriendRequest, storeFds} from "../localStorage/friendStorage";
+import {getAllSharePassFromOthers} from "./findSharePass_database";
 
 export const addFd = async (user, targetUser) => {
     const db = getDatabase()
@@ -50,6 +51,7 @@ const confirmMySide = async (user, request) =>{
 export const confirmFdToFireBase = async (user, request) => {
     const [result2, result3] = await Promise.all([confirmFriendSide(user,request), confirmMySide(user, request)])
     const [result21,result22] = await Promise.all([findAllMyRequest(user),findAllMyFd(user)])
+    const result = await getAllSharePassFromOthers()
     return result2
 }
 

@@ -23,7 +23,7 @@ export const ViewFdPassOverlay = (props: ViewFdPassOverlayProps) =>{
                 props.sharepasses[0].list.map((pass: any, i)=>(
                     <ListItem bottomDivider key={i}>
                         <ListItem.Content>
-                            <ListItem.Title>{pass.user}</ListItem.Title>
+                            <ListItem.Title>{pass.username}</ListItem.Title>
                             <ListItem.Subtitle>{pass.endDate} count:{pass.count}</ListItem.Subtitle>
                         </ListItem.Content>
                     </ListItem>))}
