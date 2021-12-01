@@ -9,7 +9,7 @@ import {addNewGym} from "../../../../localStorage/passStorage";
 import {GymSelect} from "../../../../sharedComponent/select/GymSelect";
 
 interface AddGymPopUpProps{
-    setLoading: (loading: boolean) => void
+    setLoading: () => void
     toggleOverlay: (visible: boolean) => void
 }
 
@@ -22,7 +22,7 @@ export const AddGymPopUp =(props: AddGymPopUpProps) => {
             // setOpenMapView(true)
             await addNewGym(gymName)
             close()
-            props.setLoading(true)
+            props.setLoading()
         }
         else{
             setError(true)

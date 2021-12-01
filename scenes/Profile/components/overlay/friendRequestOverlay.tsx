@@ -39,10 +39,10 @@ export const FriendRequestOverlay = (props: FriendRequestOverlayProps) =>{
 
     const confirmUserRequest = async() =>{
         const selectedRequest = props.data.filter( req => checkedList.includes(req.from))
-        selectedRequest.forEach( request =>{
-            confirmFdToFireBase(props.userLocal, request)
-        })
-        setTimeout(props.reloadParent, 100)
+        await Promise.all(selectedRequest.map( async request =>{
+            await confirmFdToFireBase(props.userLocal, request)
+        }))
+        props.reloadParent()
     }
 
     const confirmDeleteButton = () =>{
@@ -54,12 +54,12 @@ export const FriendRequestOverlay = (props: FriendRequestOverlayProps) =>{
                 }}]
         )
     }
-    const deleteRequests = () =>{
+    const deleteRequests = async() =>{
         const selectedRequest = props.data.filter( req => checkedList.includes(req.from))
-        selectedRequest.forEach( request =>{
-            rejectRequest(props.userLocal, request)
-        })
-        setTimeout(props.reloadParent, 100)
+        await Promise.all(selectedRequest.map( async request =>{
+            await rejectRequest(props.userLocal, request)
+        }))
+        props.reloadParent()
     }
 
     return (

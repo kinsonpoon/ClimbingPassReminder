@@ -6,7 +6,7 @@ import {addSharePass} from "../../../../localStorage/passStorage";
 
 
 interface AddSharePassPopUpProps {
-    setLoading: (loading: boolean) => void
+    setLoading: () => void
     toggleOverlay: (visible: boolean) => void
     gymName: string
 }
@@ -48,7 +48,7 @@ export const AddSharePassPopUp = (props: AddSharePassPopUpProps) => {
         const endDate = getNewEndDate(date, parseInt(selectedValue))
         await addSharePass(props.gymName, 'sharePass',startDate, endDate, parseInt(count))
         close()
-        props.setLoading(true)
+        props.setLoading()
     };
 
     const close = () => {

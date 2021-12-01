@@ -9,7 +9,7 @@ interface personalPassAccordionProps {
     gymName: string,
     passes: SharePassType[],
     name: string,
-    setLoading: (loading: boolean) => void
+    setLoading: () => void
 }
 
 export const PersonalPassAccordion = (props: personalPassAccordionProps) => {

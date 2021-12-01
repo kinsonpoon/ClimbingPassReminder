@@ -7,7 +7,7 @@ import {PersonalPassAccordion} from "./PersonalPassAccordion";
 import {ViewFdPassOverlay} from "./overlay/ViewFdPassOverlay";
 
 interface GymAccordionItemProps extends GymType {
-    setLoading: (loading: boolean) => void
+    setLoading: () => void
     fdPasses: any
 }
 

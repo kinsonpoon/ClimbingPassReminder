@@ -8,7 +8,7 @@ import {extendMemberShip} from "../../../../localStorage/passStorage";
 
 
 interface ExtendMemberShipPopUpProps {
-    setLoading: (loading: boolean) => void
+    setLoading: () => void
     toggleOverlay: (visible: boolean) => void
     lastEndDate: string
     gymName: string
@@ -62,7 +62,7 @@ export const ExtendMemberShipPopUp = (props: ExtendMemberShipPopUpProps) => {
         const endDate = getNewEndDate(date,parseInt(selectedValue))
         await extendMemberShip(props.gymName, startDate, endDate, 0)
         close()
-        props.setLoading(true)
+        props.setLoading()
     };
 
     const close = () => {

@@ -49,16 +49,19 @@ const confirmMySide = async (user, request) =>{
 
 export const confirmFdToFireBase = async (user, request) => {
     const [result2, result3] = await Promise.all([confirmFriendSide(user,request), confirmMySide(user, request)])
+    const [result21,result22] = await Promise.all([findAllMyRequest(user),findAllMyFd(user)])
     return result2
 }
 
 export const rejectRequest = async (user, requestUser) => {
     const db = getDatabase()
-    return await set(ref(db, 'user/' + user.uid + '/' + requestUser.fromUid), null).then((res) => {
+    const result = await set(ref(db, 'user/' + user.uid + '/' + requestUser.fromUid), null).then((res) => {
         return 'Success'
     }).catch((error) => {
         return error.message
     })
+    const [result21,result22] = await Promise.all([findAllMyRequest(user),findAllMyFd(user)])
+    return result
 }
 
 export const findAllMyFd = async (user) => {

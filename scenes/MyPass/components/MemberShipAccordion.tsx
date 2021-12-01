@@ -4,7 +4,7 @@ import {styles} from "../../../styles";
 import {ExtendMemberShipPopUp} from "./overlay/ExtendMembershipPopUp";
 
 interface MemberShipAccordionProps extends MemberShipType {
-    setLoading: (loading: boolean) => void
+    setLoading: () => void
     gymName: string
 }
 

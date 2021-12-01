@@ -7,7 +7,7 @@ import {styles} from "../../../../styles";
 
 interface MinusSharePassPopUpProps {
     count: number
-    setLoading: (loading: boolean) => void
+    setLoading: () => void
     toggleOverlay: (visible: boolean) => void
     gymName: string
     sharePassType: string
@@ -19,7 +19,7 @@ export const MinusSharePassPopUp = (props: MinusSharePassPopUpProps) => {
     const submit = async () => {
         await minusSharePass(props.gymName, props.sharePassType, props.sharePassRef, parseInt(selectedValue))
         close()
-        props.setLoading(true)
+        props.setLoading()
     };
 
     const close = () => {

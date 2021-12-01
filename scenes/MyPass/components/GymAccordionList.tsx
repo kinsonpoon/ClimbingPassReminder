@@ -5,7 +5,7 @@ import {View} from "react-native";
 interface GymAccordionListProps{
     gyms: MyGym[],
     allFdPasses: any
-    setLoading: (loading: boolean) => void
+    setLoading: () => void
 }
 
 export const GymAccordionList = (props: GymAccordionListProps) =>{
