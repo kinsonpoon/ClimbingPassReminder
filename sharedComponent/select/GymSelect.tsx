@@ -42,6 +42,15 @@ const gymList = [
         name: 'Verm City',
         value: 'VermCity'
     },
+    {
+        name: 'Sheung Shan',
+        value: 'SheungShan'
+    },
+    {
+        name: 'Crux',
+        value: 'Crux'
+    },
+
 ]
 
 interface GymSelectProps{
