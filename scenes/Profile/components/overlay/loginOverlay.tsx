@@ -6,6 +6,7 @@ import {View} from "react-native";
 
 interface loginOverlayProps {
     toggleOverlay: (visible: boolean) => void
+    userLocal: any
 }
 
 export const LoginOverlay = (props: loginOverlayProps) => {
@@ -16,6 +17,10 @@ export const LoginOverlay = (props: loginOverlayProps) => {
     const [errMessage, setErrMessage] = useState('')
     const [errMessagePw, setErrMessagePw] = useState('')
     const [fireBaseRes, setFireBaseRes] = useState('')
+    if(email == '' && props.userLocal!=null){
+        setEmail(props.userLocal.email)
+        setError(false)
+    }
     const close = () => {
         props.toggleOverlay(false)
     }

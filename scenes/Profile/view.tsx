@@ -26,7 +26,7 @@ export const ProfileScreen = (props: ProfileScreenProps) =>{
     }
 
     if(!user){
-        return <LoginScreen reloadStorage={props.reloadFromChild}/>
+        return <LoginScreen userLocal={props.userLocal} reloadStorage={props.reloadFromChild}/>
     }
 
     return( <Profile

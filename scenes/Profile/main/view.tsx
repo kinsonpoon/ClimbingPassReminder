@@ -85,7 +85,14 @@ export const Profile = (props: profileProps) => {
                     userLocal={props.userLocal}
                     toggleOverlay={setIsClickSearch}/>
                 }
-                <ListItem onPress={()=>{setIsClickedFriend(!isClickedFriend)}} bottomDivider>
+                <ListItem onPress={()=>{
+                    if(props.fds.length>0){
+                        setIsClickedFriend(!isClickedFriend)
+                    }
+                    else{
+                        alert('You have not friend')
+                    }
+                    }} bottomDivider>
                     <Avatar icon={{name: 'users', type: 'font-awesome'}} containerStyle={{backgroundColor: 'black'}}/>
                     <ListItem.Content>
                         <ListItem.Title>Your Friends</ListItem.Title>
@@ -97,7 +104,13 @@ export const Profile = (props: profileProps) => {
                 <FriendListOverlay
                     userLocal={props.userLocal} reloadParent={props.reloadStorage} toggleOverlay={setIsClickedFriend} data={props.fds}
                 />}
-                <ListItem bottomDivider onPress={()=>{setIsClickedRequest(true)}}>
+                <ListItem bottomDivider onPress={()=>{
+                    if(props.fdRequest.length>0){
+                        setIsClickedRequest(!isClickedRequest)
+                    }
+                    else{
+                        alert('You have not friend request')
+                    }}}>
                     <Avatar icon={{name: 'envelope', type: 'font-awesome'}}
                             containerStyle={{backgroundColor: 'black'}}/>
                     <ListItem.Content>
@@ -106,7 +119,7 @@ export const Profile = (props: profileProps) => {
                     </ListItem.Content>
                     <ListItem.Chevron/>
                 </ListItem>
-                {isClickedRequest && props.fdRequest.length>0 && <FriendRequestOverlay  userLocal={props.userLocal} reloadParent={props.reloadStorage} toggleOverlay={setIsClickedRequest} data={props.fdRequest}/>}
+                {isClickedRequest && <FriendRequestOverlay  userLocal={props.userLocal} reloadParent={props.reloadStorage} toggleOverlay={setIsClickedRequest} data={props.fdRequest}/>}
             </View>
             </ListItem.Accordion>
             <Button title={'Log Out'} onPress={async() => {
